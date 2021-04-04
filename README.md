@@ -1,4 +1,4 @@
-# React Accelerate
+# Accelerated News
 
 This project was bootstrapped with
 [React Accelerate](https://github.com/PublicisSapient/cra-template-accelerate).
@@ -7,9 +7,7 @@ and is designed to accelerate React application development by providing
 guidance, libraries and tools to encourage you to write web applications using
 best practices.
 
-Clone the repo listed below to see a small example of how to use this template:
-
-[React Accelerate Minimal Example](https://github.com/PublicisSapient/react-accelerate-minimal-example)
+![Screen Shot](assets/screenshot.png)
 
 ## Features
 
@@ -33,15 +31,15 @@ recommended setup procedure [here](docs/dev-machine-setup.md).
 Execute the following commands to install dependencies:
 
 ```sh
-# if using yarn v7 add --legacy-peer-deps option
+# if using npm v7 add --legacy-peer-deps option
 # see details here: https://github.com/storybookjs/storybook/issues/12983
-yarn install
+npm install
 ```
 
 Now execute the following commands to run the app:
 
 ```sh
-yarn start
+npm start
 ```
 
 Now point your browser to http://localhost:3000/.
@@ -61,7 +59,7 @@ React Accelerate comes ready with Storybook. Execute the following command to
 run Storybook.
 
 ```sh
-yarn storybook
+npm run storybook
 ```
 
 ## Running Unit Tests
@@ -70,8 +68,8 @@ React Accelerate comes ready with Jest and React Testing Library to run unit
 tests. Execute one of the following command to run unit tests.
 
 ```sh
-yarn test # interactive mode
-yarn test:coverage # non-interactive mode with coverage information
+npm run test # interactive mode
+npm run test:coverage # non-interactive mode with coverage information
 ```
 
 Note that unit tests are automatically executed when you commit code to your
@@ -83,10 +81,10 @@ React Accelerate comes ready with Cypress to run end-to-end tests. Execute
 Cypress using the following commands:
 
 ```sh
-yarn start # starts a local server hosting your react app
+npm start # starts a local server hosting your react app
 
 # run cypress in a different shell
-yarn cypress:open
+npm run cypress:open
 ```
 
 ## Code Formatting
@@ -102,7 +100,7 @@ Prettier is automatically executed when you commit code to your local repo. You
 can also execute it manually using the following command:
 
 ```sh
-yarn format
+npm run format
 ```
 
 ## Learn More
