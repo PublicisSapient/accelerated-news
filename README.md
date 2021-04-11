@@ -31,9 +31,9 @@ recommended setup procedure [here](docs/dev-machine-setup.md).
 Execute the following commands to install dependencies:
 
 ```sh
-# if using npm v7 add --legacy-peer-deps option
+# note: "--legacy-peer-deps" option is required for npm version > v7
 # see details here: https://github.com/storybookjs/storybook/issues/12983
-npm install
+npm install --legacy-peer-deps option
 ```
 
 Now execute the following commands to run the app:

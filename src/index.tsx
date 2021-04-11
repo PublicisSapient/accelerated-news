@@ -1,5 +1,7 @@
 import React, { Suspense } from 'react';
 import ReactDOM from 'react-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
+import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { App } from './App';
 import { ErrorBoundary, Loading } from './components';
@@ -13,14 +15,19 @@ if (process.env.NODE_ENV === 'development') {
   worker.printHandlers();
 }
 
+const queryClient = new QueryClient();
+
 ReactDOM.render(
   <React.StrictMode>
     <Suspense fallback={<Loading />}>
       <ErrorBoundary>
         <EnvProvider>
-          <Router>
-            <App />
-          </Router>
+          <QueryClientProvider client={queryClient}>
+            <Router>
+              <App />
+            </Router>
+            <ReactQueryDevtools initialIsOpen={false} />
+          </QueryClientProvider>
         </EnvProvider>
       </ErrorBoundary>
     </Suspense>

@@ -2,15 +2,17 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { App } from './App';
-import { Home, NotFound } from './pages';
+import { Headlines, NotFound } from './pages';
 
-jest.mock('./pages/Home/Home');
+jest.mock('./pages/Headlines/Headlines');
 jest.mock('./pages/NotFound/NotFound');
 
 describe('<App />', () => {
   test('renders the Home page on default route', () => {
     // Arrange
-    (Home as jest.Mock).mockImplementation(() => <div>HomePageMock</div>);
+    (Headlines as jest.Mock).mockImplementation(() => (
+      <div>HeadlinesPageMock</div>
+    ));
 
     // Act
     const { getByText } = render(
@@ -20,7 +22,7 @@ describe('<App />', () => {
     );
 
     // Assert
-    expect(getByText('HomePageMock')).toBeTruthy();
+    expect(getByText('HeadlinesPageMock')).toBeTruthy();
   });
 
   test('renders the Not Found page for an invalid route', () => {
