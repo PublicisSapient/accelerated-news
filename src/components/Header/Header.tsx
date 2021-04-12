@@ -1,25 +1,11 @@
 import React from 'react';
+import { Navbar } from './Navbar';
 
 export const Header = () => {
   return (
-    <header className="bg-primary">
+    <header className="bg-primary-main">
       <div className="container">
-        <nav className="navbar">
-          <span className="navbar__brand mobile">News</span>
-          <span className="navbar__brand desktop">Accelerated News</span>
-          <ul>
-            <li>
-              <a className="navbar__link active" href="/">
-                Headlines
-              </a>
-            </li>
-            <li>
-              <a className="navbar__link" href="/sports">
-                Sports
-              </a>
-            </li>
-          </ul>
-        </nav>
+        <Navbar />
       </div>
     </header>
   );

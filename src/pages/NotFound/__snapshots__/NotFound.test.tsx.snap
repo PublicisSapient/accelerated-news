@@ -2,10 +2,15 @@
 
 exports[`<NotFound /> renders correctly 1`] = `
 <DocumentFragment>
-  <main>
-    <h1>
+  <div
+    class="h-screen flex justify-center items-center text-center p-3"
+    data-testid="centered-container"
+  >
+    <h1
+      class="title"
+    >
       Page Not Found
     </h1>
-  </main>
+  </div>
 </DocumentFragment>
 `;

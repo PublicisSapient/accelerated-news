@@ -1,0 +1,39 @@
+.navbar {
+  display: flex;
+  align-items: center;
+  min-height: 5.6rem;
+}
+
+.navbar__brand {
+  color: var(--text-primary-default);
+  font-size: 20px;
+  font-weight: 400;
+  margin-right: var(--spacing-3);
+}
+
+.navbar ul {
+  display: flex;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.navbar__link {
+  color: var(--text-primary-muted);
+  font-weight: 400;
+  padding: var(--spacing-1);
+}
+
+.navbar__link:hover {
+  color: var(--neutral-100);
+  text-decoration: none;
+}
+
+/* override chota hover behavior for navbar links */
+a.navbar__link:hover {
+  opacity: 1;
+}
+
+.navbar__link.active {
+  color: var(--text-primary-default);
+}

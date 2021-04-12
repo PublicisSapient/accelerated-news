@@ -1,0 +1,13 @@
+.headline__title {
+  margin-bottom: 0;
+}
+
+.headline__attribution {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-bottom: 8px;
+}
+
+.headline__teaser {
+  margin-bottom: 32px;
+}

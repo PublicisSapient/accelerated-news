@@ -2,7 +2,9 @@
 
 exports[`<Loading /> renders correctly 1`] = `
 <DocumentFragment>
-  <div>
+  <div
+    class="p-2"
+  >
     Loading...
   </div>
 </DocumentFragment>

@@ -1,6 +1,7 @@
 import React, { ReactElement, Suspense } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { ErrorBoundary, Loading } from '../components';
 import { EnvProvider } from '../contexts';
 
@@ -13,12 +14,16 @@ import { EnvProvider } from '../contexts';
 // https://testing-library.com/docs/react-testing-library/setup/#custom-render
 // -----------------------------------------------------------------------------
 
+const queryClient = new QueryClient();
+
 const AllProviders: React.FC = ({ children }) => {
   return (
     <Suspense fallback={<Loading />}>
       <ErrorBoundary>
         <EnvProvider>
-          <Router>{children}</Router>
+          <QueryClientProvider client={queryClient}>
+            <Router>{children}</Router>
+          </QueryClientProvider>
         </EnvProvider>
       </ErrorBoundary>
     </Suspense>

@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`CenteredMessage CenteredMessage renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="flex-1 flex justify-center items-center text-center p-3"
+    data-testid="centered-container"
+  >
+    <h1
+      class="title"
+    >
+      Hello World!
+    </h1>
+  </div>
+</DocumentFragment>
+`;
+
+exports[`CenteredMessage ViewCenteredMessage renders correctly 1`] = `
+<DocumentFragment>
+  <div
+    class="h-screen flex justify-center items-center text-center p-3"
+    data-testid="centered-container"
+  >
+    <h1
+      class="title"
+    >
+      Hello World!
+    </h1>
+  </div>
+</DocumentFragment>
+`;
