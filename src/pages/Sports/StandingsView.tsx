@@ -1,5 +1,5 @@
 import React from 'react';
-import { TeamStanding } from '../../models/';
+import { TeamStanding } from './TeamStanding';
 
 export interface StandingsViewProps {
   standings: Array<TeamStanding>;

@@ -7,6 +7,7 @@ import { App } from './App';
 import { ErrorBoundary, Loading } from './components';
 import { EnvProvider } from './contexts';
 import reportWebVitals from './reportWebVitals';
+import './services/AxiosInterceptors';
 import './styles/main.css';
 
 if (process.env.NODE_ENV === 'development') {

@@ -1,7 +1,7 @@
 import React, { Fragment } from 'react';
 import { Header } from '../../components';
-import { useStandings } from '../../services';
 import { StandingsView } from './StandingsView';
+import { useStandings } from './useStandings';
 
 export const Sports = () => {
   const { isLoading, isError, error, data: standings } = useStandings();

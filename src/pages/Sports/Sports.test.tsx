@@ -11,7 +11,7 @@ describe('<Sports />', () => {
   test('renders correctly', async () => {
     const { findAllByTestId } = render(<Sports />);
 
-    // expect 10 standings
+    // expect 4 standings
     const standings = await findAllByTestId('standing');
     expect(standings.length).toBe(4);
   });

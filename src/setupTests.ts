@@ -5,6 +5,9 @@
 import '@testing-library/jest-dom';
 import { server } from './mocks/server.js';
 
+// import AxiosInterceptors, otherwise service calls will fail
+import './services/AxiosInterceptors';
+
 // ----- Set up Mock Service Worker -----
 // Establish API mocking before all tests.
 beforeAll(() => server.listen());

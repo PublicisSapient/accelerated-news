@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { useQuery } from 'react-query';
-import { TeamStanding } from '../models';
+import { TeamStanding } from './TeamStanding';
 
 /**
  * Fetches standings from the server
