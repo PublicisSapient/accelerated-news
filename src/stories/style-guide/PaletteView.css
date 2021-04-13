@@ -1,0 +1,19 @@
+.color-view {
+  flex: 0 0 200px;
+  padding: var(--spacing-1);
+}
+
+.color-view__swatch {
+  width: 100%;
+  height: 60px;
+}
+
+.color-view__symbol {
+  font-size: 12px;
+  margin: 8px 0 0 0;
+}
+
+.color-view__value {
+  font-size: 12px;
+  margin: 0 0 16px 0;
+}

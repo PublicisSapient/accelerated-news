@@ -1,0 +1,68 @@
+import { Meta } from '@storybook/addon-docs/blocks';
+import {
+  paletteCommon,
+  paletteBackground,
+  paletteGrey,
+  palettePrimary,
+  paletteSecondary,
+  paletteNeutral,
+  paletteBgDefault,
+  paletteBgPrimary,
+  paletteBgSecondary,
+} from './Colors';
+import { PaletteView } from './PaletteView';
+
+<Meta
+  title="Style Guide/Colors"
+  parameters={{
+    backgrounds: {
+      default: 'palette',
+      values: [
+        {
+          name: 'palette',
+          value: '#e5e5e5',
+        },
+      ],
+    },
+  }}
+/>
+
+# Colors
+
+## Common
+
+<PaletteView palette={paletteCommon} />
+
+## Backgrounds
+
+<PaletteView palette={paletteBackground} />
+
+## Grey
+
+<PaletteView palette={paletteGrey} />
+
+## Primary
+
+<PaletteView palette={palettePrimary} />
+
+## Secondary
+
+<PaletteView palette={paletteSecondary} />
+
+## Neutrals
+
+<PaletteView palette={paletteNeutral} />
+
+## Text
+
+### Text Colors for default background (bg-default)
+
+<PaletteView palette={paletteBgDefault} />
+
+### Text Colors for primary background (primary-main)
+
+<PaletteView palette={paletteBgPrimary} />
+
+### Text Colors for secondary background (secondary-main)
+
+<PaletteView palette={paletteBgSecondary} />

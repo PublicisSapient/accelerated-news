@@ -105,11 +105,23 @@
   margin: 0;
 }
 
+.m-1 {
+  margin: var(--spacing-1);
+}
+
 .m-2 {
   margin: var(--spacing-2);
 }
 
 /* ----- Padding ----- */
+.p-0 {
+  padding: 0;
+}
+
+.p-1 {
+  padding: var(--spacing-1);
+}
+
 .p-2 {
   padding: var(--spacing-2);
 }
