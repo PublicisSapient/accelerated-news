@@ -2,14 +2,14 @@
 
 This project was bootstrapped with
 [React Accelerate](https://github.com/PublicisSapient/cra-template-accelerate).
-It is based on [Create React App](https://github.com/facebook/create-react-app)
-and is designed to accelerate React application development by providing
-guidance, libraries and tools to encourage you to write web applications using
-best practices.
+It demonstrates how one could build upon the foundation provided by React
+Accelerate. Specifically, this is an example of a simple News site with some
+content that is available publicly, while other content that is only available
+to authenticated users.
 
 ![Screen Shot](assets/screenshot.png)
 
-## Features
+## React Accelerate Features
 
 1. TypeScript based - for type safety
 2. [Opinionated folder structure](docs/folder-structure.md)
@@ -21,7 +21,51 @@ best practices.
    - [React Testing Library](https://testing-library.com/) for unit testing
    - [Cypress](https://www.cypress.io/) for end-to-end testing
    - [Husky](https://typicode.github.io/husky) to improve the quality of commits
+   - [Mock Service Worker](https://mswjs.io/) to mock HTTP requests
    - [Prettier](https://prettier.io/) to format code consistently
+5. Some useful starter components:
+   - **ErrorBoundary**: A component to catch JavaScript errors anywhere in its
+     child component tree and display a fallback UI.
+   - **Loading**: A placeholder loading component
+   - **EnvProvider**: Provides a mechanism for loading environment variables
+     dynamically by placing an environment file (`env.js`) in the `/public`
+     folder. This allows a single build to be used across multiple environments
+     such as develop, qa, uat & prod.
+   - **Home**: A simple page showing end-to-end flow from client to server. It
+     makes an HTTP request to the server, which is intercepted by Mock Service
+     Worker (in development mode) and displays a list of movies. The unit test
+     for this page does not have to do any jest level mocking, demonstrating the
+     power of MSW.
+   - **NotFound**: A placeholder NotFound page
+   - **Sample Storybook Stories**: Showing best practices in Storybook
+   - **Unit Testing**: Utility functions to make testing easier. Also, some
+     sample tests to show best practices.
+   - **End-to-End Testing**: Sample Cypress tests to show best practices.
+
+## Implementation decisions made in this example
+
+1. For this example, we have chosen to use pure CSS and CSS Variables to
+   implement a simple design system. We have used
+   [Chota](https://jenil.github.io/chota/), a lightweight CSS framework, to get
+   us started with some foundational styles. Obviously you can use any other
+   styling framework in your own apps.
+2. We have used [BEM](https://en.bem.info/) to properly namespace our styles. Of
+   course, this is not needed if you use more modern techniques like CSS Modules
+   or CSS-in-JS. However, it is always good to know the classic CSS techniques.
+3. We have enhanced the starter components provided by React Accelerate and
+   provided a few more. See inside the `/src/components` folder. You can get a
+   better feel for these components in the project's Storybook.
+4. We added a _Style Guide_ section to our Storybook to show how documentation
+   can be added using the Markdown syntax. For more information see the
+   [Storybook documentation](https://storybook.js.org/docs/react/api/mdx).
+5. We are using REST for communicating with the server. Specifically we are
+   using an [axios](https://github.com/axios/axios) based HTTP client. We use an
+   [axios interceptor](https://github.com/axios/axios#interceptors) to simplify
+   calling the server APIs. Of course, we are still leveraging Mock Service
+   Worker (MSW) for local development.
+6. We are using [React Query](https://react-query.tanstack.com/) to manage
+   server state. You can find introductory videos on React Query
+   [here](https://react-query.tanstack.com/videos).
 
 ## Getting Started
 
@@ -112,3 +156,8 @@ npm run format
 - [Write tests. Not too many. Mostly integration.](https://kentcdodds.com/blog/write-tests)
 - [State Colocation - Where to Put State](https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster)
 - [How to use React Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
+- [MindBEMding – getting your head ’round BEM syntax](https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
+- [Get BEM - Naming](http://getbem.com/naming/)
+- [Learn CSS Variables in 5 minutes](https://www.freecodecamp.org/news/learn-css-variables-in-5-minutes-80cf63b4025d/)
+- [Difference between CSS variables and preprocessor variables](https://css-tricks.com/difference-between-types-of-css-variables/)
+- [CSS Variables - Lea Verou](https://www.youtube.com/watch?v=2an6-WVPuJU)
