@@ -5,7 +5,7 @@ import { ReactQueryDevtools } from 'react-query/devtools';
 import { BrowserRouter as Router } from 'react-router-dom';
 import { App } from './App';
 import { ErrorBoundary, Loading } from './components';
-import { EnvProvider } from './contexts';
+import { AuthContextProvider, EnvProvider } from './contexts';
 import reportWebVitals from './reportWebVitals';
 import './services/AxiosInterceptors';
 import './styles/main.css';
@@ -24,9 +24,11 @@ ReactDOM.render(
       <ErrorBoundary>
         <EnvProvider>
           <QueryClientProvider client={queryClient}>
-            <Router>
-              <App />
-            </Router>
+            <AuthContextProvider>
+              <Router>
+                <App />
+              </Router>
+            </AuthContextProvider>
             <ReactQueryDevtools initialIsOpen={false} />
           </QueryClientProvider>
         </EnvProvider>

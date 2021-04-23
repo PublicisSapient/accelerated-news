@@ -37,3 +37,22 @@ a.navbar__link:hover {
 .navbar__link.active {
   color: var(--text-primary-default);
 }
+
+.navbar__username {
+  color: var(--text-primary-muted);
+}
+
+.navbar__signin {
+  background-color: var(--neutral-100);
+  color: var(--text-default);
+}
+
+.navbar__signout {
+  color: var(--text-primary-muted);
+  margin-left: var(--spacing-1);
+  cursor: pointer;
+}
+
+.navbar__signout:hover {
+  color: var(--neutral-100);
+}

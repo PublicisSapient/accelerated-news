@@ -1,6 +1,7 @@
 import React from 'react';
 import { addDecorator } from '@storybook/react';
 import { BrowserRouter as Router } from 'react-router-dom';
+import { AuthContextProvider } from '../src/contexts';
 import '../src/styles/main.css';
 
 export const parameters = {
@@ -13,9 +14,11 @@ export const parameters = {
 };
 
 const StoryDecorator = (Story: any) => (
-  <Router>
-    <Story />
-  </Router>
+  <AuthContextProvider>
+    <Router>
+      <Story />
+    </Router>
+  </AuthContextProvider>
 );
 
 addDecorator(StoryDecorator);

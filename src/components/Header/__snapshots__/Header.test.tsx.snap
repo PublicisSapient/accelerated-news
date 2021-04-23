@@ -21,7 +21,9 @@ exports[`<Header /> renders correctly 1`] = `
         >
           Accelerated News
         </span>
-        <ul>
+        <ul
+          class="flex-1"
+        >
           <li>
             <a
               aria-current="page"
@@ -40,6 +42,12 @@ exports[`<Header /> renders correctly 1`] = `
             </a>
           </li>
         </ul>
+        <button
+          aria-label="Sign in"
+          class="navbar__signin btn-sm"
+        >
+          Sign in
+        </button>
       </nav>
     </div>
   </header>

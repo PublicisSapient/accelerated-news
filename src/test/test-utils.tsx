@@ -3,7 +3,7 @@ import { render, RenderOptions } from '@testing-library/react';
 import { MemoryRouter as Router } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ErrorBoundary, Loading } from '../components';
-import { EnvProvider } from '../contexts';
+import { AuthContextProvider, EnvProvider } from '../contexts';
 
 // -----------------------------------------------------------------------------
 // This file re-exports everything from React Testing Library and then overrides
@@ -22,7 +22,9 @@ const AllProviders: React.FC = ({ children }) => {
       <ErrorBoundary>
         <EnvProvider>
           <QueryClientProvider client={queryClient}>
-            <Router>{children}</Router>
+            <AuthContextProvider>
+              <Router>{children}</Router>
+            </AuthContextProvider>
           </QueryClientProvider>
         </EnvProvider>
       </ErrorBoundary>

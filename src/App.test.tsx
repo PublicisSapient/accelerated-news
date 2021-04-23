@@ -2,6 +2,7 @@ import React from 'react';
 import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { App } from './App';
+import { AuthContextProvider } from './contexts';
 import { Headlines, NotFound } from './pages';
 
 jest.mock('./pages/Headlines/Headlines');
@@ -16,9 +17,11 @@ describe('<App />', () => {
 
     // Act
     const { getByText } = render(
-      <MemoryRouter>
-        <App />
-      </MemoryRouter>
+      <AuthContextProvider>
+        <MemoryRouter>
+          <App />
+        </MemoryRouter>
+      </AuthContextProvider>
     );
 
     // Assert
@@ -31,9 +34,11 @@ describe('<App />', () => {
 
     // Act
     const { getByText } = render(
-      <MemoryRouter initialEntries={['/invalid/route']}>
-        <App />
-      </MemoryRouter>
+      <AuthContextProvider>
+        <MemoryRouter initialEntries={['/invalid/route']}>
+          <App />
+        </MemoryRouter>
+      </AuthContextProvider>
     );
 
     // Assert
