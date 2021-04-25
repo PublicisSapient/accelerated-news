@@ -66,6 +66,19 @@ to authenticated users.
 6. We are using [React Query](https://react-query.tanstack.com/) to manage
    server state. You can find introductory videos on React Query
    [here](https://react-query.tanstack.com/videos).
+7. We have added token-based authentication to the application.
+   - Users can sign up by supplying some basic information.
+   - Once signed up, they can sign in using their credentials. If the
+     credentials match, the server returns a unique access token to the
+     front-end.
+   - The front-end saves the access token in localStorage and returns it to the
+     server in every HTTP request. The server uses this token to identify the
+     user making the request.
+   - When the user signs out, the access token is deleted from localStorage.
+8. Authenticated users can add, update or delete news headlines on the Manage
+   Headlines page. Access to this page is granted only to authenticated users.
+   This is implemented using a `PrivateRoute` component, which extends react
+   router's `Route` component.
 
 ## Getting Started
 
