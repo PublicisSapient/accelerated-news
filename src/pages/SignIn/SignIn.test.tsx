@@ -4,7 +4,7 @@ import { SignIn } from './SignIn';
 import userEvent from '@testing-library/user-event';
 
 describe('<SignIn />', () => {
-  test('navigates to overview page on successful login', async () => {
+  test('navigates to headlines page on successful login', async () => {
     const { findByText, getByLabelText, getByText } = render(<SignIn />);
 
     // Enter valid credentials and submit form

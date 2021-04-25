@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { formatHttpError } from '@http-utils/core';
 import { useNavigate } from 'react-router-dom';
 import { ViewVerticalContainer } from '../../components';
@@ -12,12 +12,22 @@ export const SignUp = () => {
   const navigate = useNavigate();
   const [signUpError, setSignUpError] = useState<string | undefined>(undefined);
 
+  // redirect if user is already logged in
+  /* istanbul ignore next */
+  useEffect(() => {
+    if (authState.user) {
+      navigate('/');
+    }
+  }, [authState.user, navigate]);
+
+  /* istanbul ignore next */
   const handleSubmit = async (formUserInfo: FormUserInfo) => {
     const { confirmPassword, ...userInfo } = formUserInfo;
     try {
       const user = await AuthService.signUp(userInfo);
-      setAuthState({ ...authState, user });
+      // navigate before setting authState to avoid saving incorrect signInRedirect
       navigate('/');
+      setAuthState({ ...authState, user });
     } catch (e) {
       setSignUpError(formatHttpError(e));
     }

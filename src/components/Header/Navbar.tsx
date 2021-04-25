@@ -11,12 +11,16 @@ export const Navbar = () => {
   const navigate = useNavigate();
   const { user } = authState;
 
+  /* istanbul ignore next */
   const handleSignIn = async () => {
     navigate('/signin');
   };
 
+  /* istanbul ignore next */
   const handleSignOut = async () => {
     await AuthService.signOut();
+    // navigate before setting authState to avoid saving incorrect signInRedirect
+    navigate('/');
     setAuthState({ ...authState, user: undefined });
   };
 

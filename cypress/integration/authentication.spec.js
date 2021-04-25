@@ -11,33 +11,37 @@ describe('Authentication', function () {
     // Go to home page
     cy.visit('/');
 
-    // Click on sign in button
+    // Home Page: Click on sign in button
     cy.contains('Sign in').click();
 
-    // Click on sign up button
+    // SignIn: Click on sign up button
     cy.contains('Sign up').click();
 
-    // Fill out and submit the sign up form
+    // SignUp Page: Fill out sign up form and submit
     cy.get('input[name="displayName"]').type(user.displayName);
     cy.get('input[name="email"]').type(user.email);
     cy.get('input[name="password"]').type(user.password);
     cy.get('input[name="confirmPassword"]').type(user.password);
     cy.contains('Sign up').click();
 
-    // Verify navigation to headlines page and navbar showing user's name
+    // Verify navigation to headlines page and
+    //   1. navbar shows user's name
+    //   2. Manage Headlines button is visible
     cy.url().should('eq', `${baseUrl}/`);
     cy.contains(user.displayName);
+    cy.contains('Manage Headlines');
 
-    // Sign out
+    // Headlines Page: Sign out anc click on Sign in
     cy.get('svg[aria-labelledby="Sign out"]').click();
-
-    // Sign in again
     cy.contains('Sign in').click();
+
+    // SignIn Page: Sign in again
     cy.get('input[name="email"]').type(user.email);
     cy.get('input[name="password"]').type(user.password);
     cy.contains('Sign in').click();
 
-    // Verify navigation to headlines page and navbar showing user's name
+    // Verify navigation to headlines page and
+    //   1. navbar shows user's name
     cy.url().should('eq', `${baseUrl}/`);
     cy.contains(user.displayName);
   });

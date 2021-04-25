@@ -1,7 +1,15 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
+import { PrivateRoute } from './components';
 import { useAuthState, useAuthStateSetter } from './contexts';
-import { Headlines, NotFound, SignIn, SignUp, Sports } from './pages';
+import {
+  Headlines,
+  ManageHeadlines,
+  NotFound,
+  SignIn,
+  SignUp,
+  Sports,
+} from './pages';
 import { AuthService } from './services';
 
 export const App = () => {
@@ -28,6 +36,11 @@ export const App = () => {
       <Route path="/signin" element={<SignIn />} />
       <Route path="/signup" element={<SignUp />} />
       <Route path="/sports" element={<Sports />} />
+      <PrivateRoute
+        path="/manage/headlines"
+        redirectPath="/signin"
+        element={<ManageHeadlines />}
+      />
       <Route path="*" element={<NotFound />} />
     </Routes>
   );

@@ -2,10 +2,23 @@ import axios from 'axios';
 import { Credentials, User, UserInfo } from '../models';
 import { Storage } from '../utils';
 
-const TOKEN_KEY = 'access_token';
+const TOKEN_KEY = 'accessToken';
+const SIGN_IN_REDIRECT_KEY = 'signInRedirect';
 
 const getAccessToken = () => {
   return Storage.get(TOKEN_KEY);
+};
+
+const getSignInRedirectPath = () => {
+  return Storage.get(SIGN_IN_REDIRECT_KEY, '/');
+};
+
+const setSignInRedirectPath = (path: string) => {
+  return Storage.set(SIGN_IN_REDIRECT_KEY, path);
+};
+
+const removeSignInRedirectPath = () => {
+  return Storage.remove(SIGN_IN_REDIRECT_KEY);
 };
 
 const fetchUser = async (): Promise<User | undefined> => {
@@ -19,8 +32,8 @@ const fetchUser = async (): Promise<User | undefined> => {
 
 const signIn = async (credentials: Credentials): Promise<User> => {
   const resp = await axios.post('/auth/signin', credentials);
-  const { access_token, user } = resp.data;
-  Storage.set(TOKEN_KEY, access_token);
+  const { accessToken, user } = resp.data;
+  Storage.set(TOKEN_KEY, accessToken);
   return user;
 };
 
@@ -32,13 +45,16 @@ const signOut = async (): Promise<Boolean> => {
 
 const signUp = async (userInfo: UserInfo): Promise<User> => {
   const resp = await axios.post('/auth/signup', userInfo);
-  const { access_token, user } = resp.data;
-  Storage.set(TOKEN_KEY, access_token);
+  const { accessToken, user } = resp.data;
+  Storage.set(TOKEN_KEY, accessToken);
   return user;
 };
 
 export const AuthService = {
   getAccessToken,
+  getSignInRedirectPath,
+  setSignInRedirectPath,
+  removeSignInRedirectPath,
   fetchUser,
   signIn,
   signOut,

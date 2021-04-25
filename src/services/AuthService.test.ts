@@ -22,6 +22,8 @@ const credentials: Credentials = {
   password: 'let-me-in',
 };
 
+const signInRedirectPath = '/manage/headlines';
+
 describe('AuthService', () => {
   it('allows user to sign up, sign out and sign in', async () => {
     const actualUser1 = await AuthService.signUp(userInfo);
@@ -38,5 +40,13 @@ describe('AuthService', () => {
 
     const actualUser4 = await AuthService.signIn(credentials);
     expect(actualUser4).toEqual(user);
+  });
+
+  it('allows to manage sign in redirect path', async () => {
+    AuthService.setSignInRedirectPath(signInRedirectPath);
+    expect(AuthService.getSignInRedirectPath()).toEqual(signInRedirectPath);
+
+    AuthService.removeSignInRedirectPath();
+    expect(AuthService.getSignInRedirectPath()).toEqual('/');
   });
 });

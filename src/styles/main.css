@@ -125,6 +125,26 @@
   margin: var(--spacing-3);
 }
 
+.mt-1 {
+  margin-top: var(--spacing-1);
+}
+
+.mt-2 {
+  margin-top: var(--spacing-2);
+}
+
+.mt-3 {
+  margin-top: var(--spacing-3);
+}
+
+.mb-1 {
+  margin-bottom: var(--spacing-1);
+}
+
+.mb-2 {
+  margin-bottom: var(--spacing-2);
+}
+
 .mb-3 {
   margin-bottom: var(--spacing-3);
 }
@@ -175,7 +195,7 @@
 /* ----- Typography ----- */
 .title {
   margin: 0;
-  font-size: 32px;
+  font-size: 30px;
   line-height: 1;
 }
 
@@ -215,6 +235,11 @@ label {
 .btn-lg {
   font-size: 20px;
   line-height: 1.5;
+}
+
+.btn-secondary {
+  background-color: var(--secondary-main);
+  color: var(--text-secondary-default);
 }
 
 .btn-outline-secondary {

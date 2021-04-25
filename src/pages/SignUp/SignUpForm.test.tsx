@@ -43,14 +43,14 @@ describe('<SignUpForm />', () => {
       <SignUpForm onSubmit={handleSubmit} />
     );
 
-    // Enter valid credentials and submit form
+    // Enter valid user info and submit form
     userEvent.type(getByLabelText('Display Name'), 'John Smith');
     userEvent.type(getByLabelText('Email'), 'johnsmith@gmail.com');
     userEvent.type(getByLabelText('Password'), 'let-me-in');
     userEvent.type(getByLabelText('Confirm Password'), 'let-me-in');
     userEvent.click(getByText('Sign up'));
 
-    // Expect handleSubmit to be called with the entered credentials
+    // Expect handleSubmit to be called with user info
     await waitFor(() => expect(handleSubmit).toHaveBeenCalledTimes(1));
     expect(handleSubmit).toHaveBeenCalledWith(
       {

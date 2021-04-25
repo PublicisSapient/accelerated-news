@@ -12,8 +12,8 @@ const AuthSetterContext = React.createContext<AuthStateSetter | undefined>(
 // ---------- Hooks ----------
 function useAuthState(): AuthState {
   const authState = useContext(AuthContext);
+  /* istanbul ignore next */
   if (authState === undefined) {
-    /* istanbul ignore next */
     throw new Error('useAuthState must be used within a AuthContextProvider');
   }
   return authState;
@@ -21,8 +21,8 @@ function useAuthState(): AuthState {
 
 function useAuthStateSetter(): AuthStateSetter {
   const setAuthState = useContext(AuthSetterContext);
+  /* istanbul ignore next */
   if (setAuthState === undefined) {
-    /* istanbul ignore next */
     throw new Error(
       'useAuthStateSetter must be used within a AuthContextProvider'
     );

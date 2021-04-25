@@ -4,13 +4,15 @@ import { SignUp } from './SignUp';
 import userEvent from '@testing-library/user-event';
 
 describe('<SignUp />', () => {
-  test('navigates to overview page on successful login', async () => {
+  test('navigates to headlines page on successful login', async () => {
     const { findByText, getByLabelText, getByText } = render(<SignUp />);
 
-    // Enter valid credentials and submit form
+    // Enter valid user info and submit form
+    userEvent.type(getByLabelText('Display Name'), 'John Smith');
     userEvent.type(getByLabelText('Email'), 'johnsmith@gmail.com');
     userEvent.type(getByLabelText('Password'), 'let-me-in');
-    userEvent.click(getByText('Sign in'));
+    userEvent.type(getByLabelText('Confirm Password'), 'let-me-in');
+    userEvent.click(getByText('Sign up'));
 
     // Expect to see the headlines page
     // TODO: wait for React Router docs to catch up on testing. See here:

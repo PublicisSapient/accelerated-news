@@ -25,10 +25,10 @@ function parseAccessToken(req: RestRequest) {
   }
 
   const scheme = parts[0];
-  const token = parts[1];
+  const accessToken = parts[1];
 
   if (scheme === 'Bearer') {
-    return token;
+    return accessToken;
   }
 }
 
@@ -52,12 +52,12 @@ function createErrorResponse(
 export const handlers = [
   /** get user information */
   rest.get(`${API_URL}/auth/me`, (req, res, ctx) => {
-    const token = parseAccessToken(req);
-    if (!token) {
+    const accessToken = parseAccessToken(req);
+    if (!accessToken) {
       return createErrorResponse(res, ctx, 400, 'Unauthorized');
     }
 
-    const email = getTokenValue(token);
+    const email = getTokenValue(accessToken);
     if (!email) {
       return createErrorResponse(res, ctx, 400, 'Unauthorized');
     }
@@ -69,7 +69,7 @@ export const handlers = [
 
     const { password, ...user } = existingUser;
     return createSuccessResponse(res, ctx, {
-      access_token: token,
+      accessToken: accessToken,
       user,
     });
   }),
@@ -88,24 +88,24 @@ export const handlers = [
       );
     }
 
-    const token = uuidv4();
-    setTokenValue(token, existingUser.email);
+    const accessToken = uuidv4();
+    setTokenValue(accessToken, existingUser.email);
 
     const { password, ...user } = existingUser;
     return createSuccessResponse(res, ctx, {
-      access_token: token,
+      accessToken,
       user,
     });
   }),
 
   /** sign out */
   rest.post(`${API_URL}/auth/signout`, (req, res, ctx) => {
-    const token = parseAccessToken(req);
-    if (!token) {
+    const accessToken = parseAccessToken(req);
+    if (!accessToken) {
       return createSuccessResponse(res, ctx, true);
     }
 
-    removeToken(token);
+    removeToken(accessToken);
     return createSuccessResponse(res, ctx, true);
   }),
 
@@ -120,12 +120,12 @@ export const handlers = [
     if (requestedUser) {
       const createdUser = setUser(requestedUser);
       if (createdUser) {
-        const token = uuidv4();
-        setTokenValue(token, requestedUser.email);
+        const accessToken = uuidv4();
+        setTokenValue(accessToken, requestedUser.email);
 
         const { password, ...user } = createdUser;
         return createSuccessResponse(res, ctx, {
-          access_token: token,
+          accessToken,
           user,
         });
       }
