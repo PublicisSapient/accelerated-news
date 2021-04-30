@@ -125,6 +125,30 @@
   margin: var(--spacing-3);
 }
 
+.ml-1 {
+  margin-left: var(--spacing-1);
+}
+
+.ml-2 {
+  margin-left: var(--spacing-2);
+}
+
+.ml-3 {
+  margin-left: var(--spacing-3);
+}
+
+.mr-1 {
+  margin-right: var(--spacing-1);
+}
+
+.mr-2 {
+  margin-right: var(--spacing-2);
+}
+
+.mr-3 {
+  margin-right: var(--spacing-3);
+}
+
 .mt-1 {
   margin-top: var(--spacing-1);
 }
@@ -222,10 +246,32 @@
   border: 1px solid var(--neutral-100);
 }
 
+/* ----- Card ----- */
+.card {
+  padding: var(--spacing-2);
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.card--primary {
+  background-color: var(--primary-dark);
+  color: var(--text-primary-default);
+  border: 3px solid var(--primary-dark);
+}
+
+.card--selected {
+  border: 3px solid var(--secondary-main);
+}
+
 /* ----- Forms ----- */
 label {
   display: inline-block;
   margin-bottom: var(--spacing-1);
+}
+
+/* ----- Buttons ----- */
+.btn {
+  padding: 1rem 2rem;
 }
 
 .btn-sm {
