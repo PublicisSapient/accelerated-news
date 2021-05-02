@@ -1,2 +1,2 @@
 export * from './AuthService';
-export * from './useHeadlines';
+export * from './HeadlineService';

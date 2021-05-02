@@ -243,7 +243,6 @@
 /* ----- Paper ----- */
 .paper {
   background-color: var(--bg-paper);
-  border: 1px solid var(--neutral-100);
 }
 
 /* ----- Card ----- */

@@ -10,13 +10,20 @@ import reportWebVitals from './reportWebVitals';
 import './services/AxiosInterceptors';
 import './styles/main.css';
 
+// Start mock service worker
 if (process.env.NODE_ENV === 'development') {
   const { worker } = require('./mocks/browser');
   worker.start();
   worker.printHandlers();
 }
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 ReactDOM.render(
   <React.StrictMode>

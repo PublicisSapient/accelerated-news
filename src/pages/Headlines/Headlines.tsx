@@ -2,13 +2,13 @@ import React, { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, HorizontalContainer } from '../../components';
 import { useAuthState } from '../../contexts';
-import { useHeadlines } from '../../services';
+import { useHeadlinesQuery } from '../../services';
 import { HeadlinesView } from './HeadlinesView';
 
 export const Headlines = () => {
   const navigate = useNavigate();
   const { user } = useAuthState();
-  const { isLoading, isError, error, data: headlines } = useHeadlines();
+  const { isLoading, isError, error, data: headlines } = useHeadlinesQuery();
 
   if (isLoading) {
     return null;

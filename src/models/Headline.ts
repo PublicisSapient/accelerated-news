@@ -16,6 +16,7 @@ const create = () => {
   };
 };
 
+/* eslint-disable @typescript-eslint/no-redeclare */
 export const Headline = {
   create,
 };

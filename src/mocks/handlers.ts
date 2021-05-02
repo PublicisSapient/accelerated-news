@@ -1,6 +1,7 @@
 import { rest, RestRequest, ResponseComposition, RestContext } from 'msw';
+import { HttpStatusCode } from '@http-utils/core';
 import { v4 as uuidv4 } from 'uuid';
-import { Credentials, UserInfo } from '../models';
+import { Credentials, Headline, UserInfo } from '../models';
 import {
   getUser,
   setUser,
@@ -12,6 +13,8 @@ import { mockHeadlines } from './mockHeadlines';
 import { mockStandings } from './mockStandings';
 
 const API_URL = 'http://localhost:8080';
+
+const { Created, Forbidden, NotFound, Unauthorized } = HttpStatusCode;
 
 function parseAccessToken(req: RestRequest) {
   const authHeader = req.headers.get('Authorization');
@@ -54,17 +57,17 @@ export const handlers = [
   rest.get(`${API_URL}/auth/me`, (req, res, ctx) => {
     const accessToken = parseAccessToken(req);
     if (!accessToken) {
-      return createErrorResponse(res, ctx, 400, 'Unauthorized');
+      return createErrorResponse(res, ctx, Unauthorized, 'Unauthorized');
     }
 
     const email = getTokenValue(accessToken);
     if (!email) {
-      return createErrorResponse(res, ctx, 400, 'Unauthorized');
+      return createErrorResponse(res, ctx, Unauthorized, 'Unauthorized');
     }
 
     const existingUser = getUser(email);
     if (!existingUser) {
-      return createErrorResponse(res, ctx, 400, 'Unauthorized');
+      return createErrorResponse(res, ctx, Unauthorized, 'Unauthorized');
     }
 
     const { password, ...user } = existingUser;
@@ -83,7 +86,7 @@ export const handlers = [
       return createErrorResponse(
         res,
         ctx,
-        400,
+        Unauthorized,
         'Email or password did not match'
       );
     }
@@ -114,7 +117,12 @@ export const handlers = [
     const requestedUser: UserInfo = req.body as UserInfo;
     const existingUser = getUser(requestedUser?.email);
     if (existingUser) {
-      return createErrorResponse(res, ctx, 400, 'The user already exists');
+      return createErrorResponse(
+        res,
+        ctx,
+        Unauthorized,
+        'The user already exists'
+      );
     }
 
     if (requestedUser) {
@@ -135,6 +143,62 @@ export const handlers = [
   /** get headlines */
   rest.get(`${API_URL}/headlines`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(mockHeadlines));
+  }),
+
+  /** get headline */
+  rest.get(`${API_URL}/headlines/:headlineId`, (req, res, ctx) => {
+    const { headlineId } = req.params;
+    const headline = mockHeadlines.find(
+      (headline) => headline.id === headlineId
+    );
+    if (headline !== undefined) {
+      return res(ctx.status(200), ctx.json(headline));
+    } else {
+      return createErrorResponse(res, ctx, NotFound, 'Headline does not exist');
+    }
+  }),
+
+  /** create a headline */
+  rest.post(`${API_URL}/headlines`, (req, res, ctx) => {
+    const accessToken = parseAccessToken(req);
+    if (!accessToken) {
+      return createErrorResponse(
+        res,
+        ctx,
+        Forbidden,
+        "You don't have permission to create headlines"
+      );
+    }
+
+    const headline: Headline = req.body as Headline;
+    mockHeadlines.push(headline);
+    return res(ctx.delay(500), ctx.status(Created), ctx.json({ headline }));
+  }),
+
+  /** update a headline */
+  rest.put(`${API_URL}/headlines/:headlineId`, (req, res, ctx) => {
+    const { headlineId } = req.params;
+    const accessToken = parseAccessToken(req);
+    if (!accessToken) {
+      return createErrorResponse(
+        res,
+        ctx,
+        Forbidden,
+        "You don't have permission to update headlines"
+      );
+    }
+
+    const newHeadline: Headline = req.body as Headline;
+    const index = mockHeadlines.findIndex(
+      (headline) => headline.id === headlineId
+    );
+    if (index >= 0) {
+      // replace the headline in the array
+      mockHeadlines.splice(index, 1, newHeadline);
+      return res(ctx.status(200), ctx.json(newHeadline));
+    } else {
+      return createErrorResponse(res, ctx, NotFound, 'Headline does not exist');
+    }
   }),
 
   /** get standings */

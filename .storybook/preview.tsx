@@ -1,7 +1,9 @@
 import React from 'react';
 import { addDecorator } from '@storybook/react';
+import { QueryClient, QueryClientProvider } from 'react-query';
 import { BrowserRouter as Router } from 'react-router-dom';
-import { AuthContextProvider } from '../src/contexts';
+import { AuthContextProvider, EnvProvider } from '../src/contexts';
+import '../src/services/AxiosInterceptors';
 import '../src/styles/main.css';
 
 export const parameters = {
@@ -13,12 +15,29 @@ export const parameters = {
   },
 };
 
+// Start mock service worker
+const { worker } = require('../src/mocks/browser');
+worker.start();
+worker.printHandlers();
+
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      refetchOnWindowFocus: false,
+    },
+  },
+});
+
 const StoryDecorator = (Story: any) => (
-  <AuthContextProvider>
-    <Router>
-      <Story />
-    </Router>
-  </AuthContextProvider>
+  <EnvProvider>
+    <QueryClientProvider client={queryClient}>
+      <AuthContextProvider>
+        <Router>
+          <Story />
+        </Router>
+      </AuthContextProvider>
+    </QueryClientProvider>
+  </EnvProvider>
 );
 
 addDecorator(StoryDecorator);
