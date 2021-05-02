@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { QueryFunction, useMutation, useQuery } from 'react-query';
+import { QueryFunctionContext, useMutation, useQuery } from 'react-query';
 import { Headline } from '../models';
 
 // ---------- fetchHeadlines ----------
@@ -15,19 +15,16 @@ export const useHeadlinesQuery = () => {
 // ---------- fetchHeadline ----------
 type HeadlineQueryKey = readonly ['headline', string];
 
-const fetchHeadline: QueryFunction<Headline, HeadlineQueryKey> = async ({
+const fetchHeadline = async ({
   queryKey,
-}): Promise<Headline> => {
+}: QueryFunctionContext<HeadlineQueryKey>): Promise<Headline> => {
   const [, headlineId] = queryKey;
   const resp = await axios.get(`/headlines/${headlineId}`);
   return resp.data;
 };
 
 export const useHeadlineQuery = (headlineId: string) => {
-  return useQuery({
-    queryKey: ['headline', headlineId],
-    queryFn: fetchHeadline,
-  });
+  return useQuery(['headline', headlineId], fetchHeadline);
 };
 
 // ---------- createHeadline ----------
