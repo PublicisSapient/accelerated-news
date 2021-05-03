@@ -2,7 +2,7 @@ import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { TextField } from '../../components';
+import { TextAreaField, TextField } from '../../components';
 import { Headline } from '../../models';
 
 const schema = yup.object().shape({
@@ -32,11 +32,12 @@ export const HeadlineForm = ({
   return (
     <form className="p-2" onSubmit={handleSubmit(onSubmit)}>
       <div className="mb-3">
-        <TextField
+        <TextAreaField
           id="title"
           {...register('title')}
           label="Title"
           error={errors.title?.message}
+          rows={2}
         />
       </div>
 
@@ -50,11 +51,12 @@ export const HeadlineForm = ({
       </div>
 
       <div className="mb-5">
-        <TextField
+        <TextAreaField
           id="teaser"
           {...register('teaser')}
           label="Teaser"
           error={errors.teaser?.message}
+          rows={8}
         />
       </div>
 
