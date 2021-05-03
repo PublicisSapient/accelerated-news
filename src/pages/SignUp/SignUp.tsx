@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from 'react';
-import { formatHttpError } from '@http-utils/core';
 import { useNavigate } from 'react-router-dom';
 import { ViewVerticalContainer } from '../../components';
 import { useAuthState, useAuthStateSetter } from '../../contexts';
@@ -29,7 +28,7 @@ export const SignUp = () => {
       navigate('/');
       setAuthState({ ...authState, user });
     } catch (e) {
-      setSignUpError(formatHttpError(e));
+      setSignUpError(e.message);
     }
   };
 

@@ -1,11 +1,21 @@
+import { formatHttpError } from '@http-utils/core';
 import axios from 'axios';
-import { QueryFunctionContext, useMutation, useQuery } from 'react-query';
+import {
+  QueryFunctionContext,
+  useMutation,
+  useQuery,
+  useQueryClient,
+} from 'react-query';
 import { Headline } from '../models';
 
 // ---------- fetchHeadlines ----------
 const fetchHeadlines = async (): Promise<Array<Headline>> => {
-  const resp = await axios.get('/headlines');
-  return resp.data;
+  try {
+    const resp = await axios.get('/headlines');
+    return resp.data;
+  } catch (e) {
+    throw new Error(formatHttpError(e));
+  }
 };
 
 export const useHeadlinesQuery = () => {
@@ -18,9 +28,13 @@ type HeadlineQueryKey = readonly ['headline', string];
 const fetchHeadline = async ({
   queryKey,
 }: QueryFunctionContext<HeadlineQueryKey>): Promise<Headline> => {
-  const [, headlineId] = queryKey;
-  const resp = await axios.get(`/headlines/${headlineId}`);
-  return resp.data;
+  try {
+    const [, headlineId] = queryKey;
+    const resp = await axios.get(`/headlines/${headlineId}`);
+    return resp.data;
+  } catch (e) {
+    throw new Error(formatHttpError(e));
+  }
 };
 
 export const useHeadlineQuery = (headlineId: string) => {
@@ -28,16 +42,44 @@ export const useHeadlineQuery = (headlineId: string) => {
 };
 
 // ---------- createHeadline ----------
+const createHeadline = async (headline: Headline) => {
+  try {
+    const resp = await axios.post('/headlines', headline);
+    return resp.data;
+  } catch (e) {
+    throw new Error(formatHttpError(e));
+  }
+};
+
 export const useHeadlineCreate = () => {
-  return useMutation(
-    async (headline: Headline) => await axios.post('/headlines', headline)
-  );
+  const queryClient = useQueryClient();
+
+  return useMutation(createHeadline, {
+    onSuccess: () => {
+      // refetch headlines on success
+      queryClient.invalidateQueries('headlines');
+    },
+  });
 };
 
 // ---------- updateHeadline ----------
-export const useHeadlineUpdate = () => {
-  return useMutation(
-    async (headline: Headline) =>
-      await axios.put(`/headlines/${headline.id}`, headline)
-  );
+const updateHeadline = async (headline: Headline) => {
+  try {
+    const resp = await axios.put(`/headlines/${headline.id}`, headline);
+    return resp.data;
+  } catch (e) {
+    throw new Error(formatHttpError(e));
+  }
+};
+
+export const useHeadlineUpdate = (headLineId: string) => {
+  const queryClient = useQueryClient();
+
+  return useMutation(updateHeadline, {
+    onSuccess: () => {
+      // refetch headlines on success
+      queryClient.invalidateQueries('headlines');
+      queryClient.invalidateQueries(['headline', headLineId]);
+    },
+  });
 };

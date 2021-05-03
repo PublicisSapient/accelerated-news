@@ -1,3 +1,4 @@
+import { formatHttpError } from '@http-utils/core';
 import axios from 'axios';
 import { Credentials, User, UserInfo } from '../models';
 import { Storage } from '../utils';
@@ -23,31 +24,47 @@ const removeSignInRedirectPath = () => {
 
 const fetchUser = async (): Promise<User | undefined> => {
   const token = Storage.get(TOKEN_KEY);
-  if (token) {
+  if (!token) return;
+
+  try {
     const resp = await axios.get('/auth/me');
     const { user } = resp.data;
     return user;
+  } catch (e) {
+    throw new Error(formatHttpError(e));
   }
 };
 
 const signIn = async (credentials: Credentials): Promise<User> => {
-  const resp = await axios.post('/auth/signin', credentials);
-  const { accessToken, user } = resp.data;
-  Storage.set(TOKEN_KEY, accessToken);
-  return user;
+  try {
+    const resp = await axios.post('/auth/signin', credentials);
+    const { accessToken, user } = resp.data;
+    Storage.set(TOKEN_KEY, accessToken);
+    return user;
+  } catch (e) {
+    throw new Error(formatHttpError(e));
+  }
 };
 
 const signOut = async (): Promise<Boolean> => {
-  const resp = await axios.post('/auth/signout');
-  Storage.remove(TOKEN_KEY);
-  return resp.data;
+  try {
+    const resp = await axios.post('/auth/signout');
+    Storage.remove(TOKEN_KEY);
+    return resp.data;
+  } catch (e) {
+    throw new Error(formatHttpError(e));
+  }
 };
 
 const signUp = async (userInfo: UserInfo): Promise<User> => {
-  const resp = await axios.post('/auth/signup', userInfo);
-  const { accessToken, user } = resp.data;
-  Storage.set(TOKEN_KEY, accessToken);
-  return user;
+  try {
+    const resp = await axios.post('/auth/signup', userInfo);
+    const { accessToken, user } = resp.data;
+    Storage.set(TOKEN_KEY, accessToken);
+    return user;
+  } catch (e) {
+    throw new Error(formatHttpError(e));
+  }
 };
 
 export const AuthService = {

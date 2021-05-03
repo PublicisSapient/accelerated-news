@@ -34,7 +34,7 @@ export const HeadlineDetailExisting = ({
   const { isLoading, isError, error, data: headline } = useHeadlineQuery(
     headLineId
   );
-  const updateHeadlineMutation = useHeadlineUpdate();
+  const updateHeadlineMutation = useHeadlineUpdate(headLineId);
 
   const handleSubmit = (headline: Headline) => {
     updateHeadlineMutation.mutate(headline);

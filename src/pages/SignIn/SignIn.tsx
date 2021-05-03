@@ -1,5 +1,4 @@
 import React, { useCallback, useState, useEffect } from 'react';
-import { formatHttpError } from '@http-utils/core';
 import { useNavigate } from 'react-router-dom';
 import { ViewVerticalContainer } from '../../components';
 import { useAuthState, useAuthStateSetter } from '../../contexts';
@@ -34,7 +33,7 @@ export const SignIn = () => {
       setAuthState({ ...authState, user });
       navigateToSignInRedirect();
     } catch (e) {
-      setSignInError(formatHttpError(e));
+      setSignInError(e.message);
     }
   };
 
