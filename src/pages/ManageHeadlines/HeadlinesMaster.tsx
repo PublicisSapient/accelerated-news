@@ -29,6 +29,7 @@ export const HeadlinesMaster = ({
         return (
           <div
             key={headline.id}
+            data-testid="headline-card"
             className={`card card--primary m-2 ${selectionClass}`}
             onClick={() => onItemSelected(headline.id)}
           >

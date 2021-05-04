@@ -60,11 +60,15 @@ export const HeadlineForm = ({
         />
       </div>
 
-      <button className="btn" type="submit">
+      <button data-testid="submit-button" className="btn" type="submit">
         {isNew ? 'Add' : 'Update'}
       </button>
 
-      <button className="btn ml-1" onClick={() => reset()}>
+      <button
+        data-testid="reset-button"
+        className="btn ml-1"
+        onClick={() => reset()}
+      >
         Reset
       </button>
     </form>

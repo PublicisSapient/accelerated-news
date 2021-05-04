@@ -79,6 +79,8 @@ to authenticated users.
    Headlines page. Access to this page is granted only to authenticated users.
    This is implemented using a `PrivateRoute` component, which extends react
    router's `Route` component.
+9. _Manage Headlines_ page demonstrates the use of the Master-Detail pattern to
+   add or edit headlines.
 
 ## Getting Started
 
