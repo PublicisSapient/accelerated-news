@@ -10,7 +10,7 @@ import {
 
 export const HeadlineDetailNew = ({
   selectionState,
-  onItemUpdated,
+  onStartNewItem,
 }: MasterDetailChildProps) => {
   const createHeadlineMutation = useHeadlineCreate();
   const { isNew } = selectionState;
@@ -18,7 +18,7 @@ export const HeadlineDetailNew = ({
 
   const handleSubmit = (headline: Headline) => {
     createHeadlineMutation.mutate(headline);
-    onItemUpdated();
+    onStartNewItem();
   };
 
   return (

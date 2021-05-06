@@ -67,10 +67,11 @@ export function MasterDetail({
   });
 
   const handleStartNewItem = () => {
+    const { version } = selectionState;
     setSelectionState({
       isNew: true,
       itemId: '',
-      version: 0,
+      version: version + 1,
     });
   };
 
@@ -97,7 +98,7 @@ export function MasterDetail({
 
       <HorizontalContainer className="min-h-0">
         <ScrollingContainer
-          data-testid="master-container"
+          testId="master-container"
           className={masterContainerClassName}
         >
           <MasterComponent
@@ -108,7 +109,7 @@ export function MasterDetail({
           />
         </ScrollingContainer>
         <ScrollingContainer
-          data-testid="detail-container"
+          testId="detail-container"
           className={detailContainerClassName}
         >
           <DetailComponent

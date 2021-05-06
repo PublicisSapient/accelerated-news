@@ -1,7 +1,7 @@
 import React from 'react';
+import userEvent from '@testing-library/user-event';
 import { render } from '../../test/test-utils';
 import { SignIn } from './SignIn';
-import userEvent from '@testing-library/user-event';
 
 describe('<SignIn />', () => {
   test('navigates to headlines page on successful login', async () => {

@@ -8,8 +8,10 @@ export interface MasterDetailChildProps {
   // {
   //    isNew: true
   //    itemId: ''
-  //    version: 0
+  //    version: version + 1
   // }
+  //
+  // The version increment forces a new detail component to be created
   onStartNewItem: () => void;
 
   // Informs parent that an existing item has been selected.

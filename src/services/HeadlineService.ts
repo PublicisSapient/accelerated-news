@@ -9,7 +9,7 @@ import {
 import { Headline } from '../models';
 
 // ---------- fetchHeadlines ----------
-const fetchHeadlines = async (): Promise<Array<Headline>> => {
+export const fetchHeadlines = async (): Promise<Array<Headline>> => {
   try {
     const resp = await axios.get('/headlines');
     return resp.data;
@@ -25,7 +25,7 @@ export const useHeadlinesQuery = () => {
 // ---------- fetchHeadline ----------
 type HeadlineQueryKey = readonly ['headline', string];
 
-const fetchHeadline = async ({
+export const fetchHeadline = async ({
   queryKey,
 }: QueryFunctionContext<HeadlineQueryKey>): Promise<Headline> => {
   try {
@@ -42,7 +42,7 @@ export const useHeadlineQuery = (headlineId: string) => {
 };
 
 // ---------- createHeadline ----------
-const createHeadline = async (headline: Headline) => {
+export const createHeadline = async (headline: Headline) => {
   try {
     const resp = await axios.post('/headlines', headline);
     return resp.data;
@@ -63,7 +63,7 @@ export const useHeadlineCreate = () => {
 };
 
 // ---------- updateHeadline ----------
-const updateHeadline = async (headline: Headline) => {
+export const updateHeadline = async (headline: Headline) => {
   try {
     const resp = await axios.put(`/headlines/${headline.id}`, headline);
     return resp.data;
