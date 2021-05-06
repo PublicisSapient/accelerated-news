@@ -2,15 +2,20 @@ import { rest, RestRequest, ResponseComposition, RestContext } from 'msw';
 import { HttpStatusCode } from '@http-utils/core';
 import { v4 as uuidv4 } from 'uuid';
 import { Credentials, Headline, UserInfo } from '../models';
-import {
+import { mockDb } from './mockDb';
+
+const {
   getUser,
   setUser,
   getTokenValue,
   setTokenValue,
   removeToken,
-} from './mockDb';
-import { mockHeadlines } from './mockHeadlines';
-import { mockStandings } from './mockStandings';
+  getHeadlines,
+  getHeadline,
+  createHeadline,
+  updateHeadline,
+  getStandings,
+} = mockDb;
 
 const API_URL = 'http://localhost:8080';
 
@@ -142,15 +147,13 @@ export const handlers = [
 
   /** get headlines */
   rest.get(`${API_URL}/headlines`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(mockHeadlines));
+    return res(ctx.status(200), ctx.json(getHeadlines()));
   }),
 
   /** get headline */
   rest.get(`${API_URL}/headlines/:headlineId`, (req, res, ctx) => {
     const { headlineId } = req.params;
-    const headline = mockHeadlines.find(
-      (headline) => headline.id === headlineId
-    );
+    const headline = getHeadline(headlineId);
     if (headline !== undefined) {
       return res(ctx.status(200), ctx.json(headline));
     } else {
@@ -171,13 +174,12 @@ export const handlers = [
     }
 
     const headline: Headline = req.body as Headline;
-    mockHeadlines.push(headline);
+    createHeadline(headline);
     return res(ctx.delay(500), ctx.status(Created), ctx.json({ headline }));
   }),
 
   /** update a headline */
   rest.put(`${API_URL}/headlines/:headlineId`, (req, res, ctx) => {
-    const { headlineId } = req.params;
     const accessToken = parseAccessToken(req);
     if (!accessToken) {
       return createErrorResponse(
@@ -188,21 +190,17 @@ export const handlers = [
       );
     }
 
-    const newHeadline: Headline = req.body as Headline;
-    const index = mockHeadlines.findIndex(
-      (headline) => headline.id === headlineId
-    );
-    if (index >= 0) {
-      // replace the headline in the array
-      mockHeadlines.splice(index, 1, newHeadline);
-      return res(ctx.status(200), ctx.json(newHeadline));
-    } else {
-      return createErrorResponse(res, ctx, NotFound, 'Headline does not exist');
+    const updatedHeadline: Headline = req.body as Headline;
+    try {
+      updateHeadline(updatedHeadline);
+      return res(ctx.status(200), ctx.json(updateHeadline));
+    } catch (e) {
+      return createErrorResponse(res, ctx, NotFound, e.message);
     }
   }),
 
   /** get standings */
   rest.get(`${API_URL}/standings`, (req, res, ctx) => {
-    return res(ctx.status(200), ctx.json(mockStandings));
+    return res(ctx.status(200), ctx.json(getStandings()));
   }),
 ];
