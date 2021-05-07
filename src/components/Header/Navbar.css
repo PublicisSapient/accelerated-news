@@ -8,7 +8,12 @@
   color: var(--text-primary-default);
   font-size: 20px;
   font-weight: 400;
-  margin-right: var(--spacing-3);
+  margin-right: var(--spacing-2);
+}
+@media (min-width: 480px) {
+  .navbar__brand {
+    margin-right: var(--spacing-3);
+  }
 }
 
 .navbar ul {

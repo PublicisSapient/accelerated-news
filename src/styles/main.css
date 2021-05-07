@@ -274,7 +274,12 @@ label {
 }
 
 .btn-sm {
-  padding: 0.6rem 2rem;
+  padding: 0.6rem 1rem;
+}
+@media (min-width: 480px) {
+  .btn-sm {
+    padding: 0.6rem 2rem;
+  }
 }
 
 .btn-lg {
@@ -372,6 +377,7 @@ label {
   --bg-color: var(--grey-50);
   --color-primary: var(--primary-800);
   --font-color: var(--neutral-900);
+  --font-family-sans: Inter, sans-serif;
   --grid-maxWidth: 80rem;
 
   /* ----- Spacing ----- */
