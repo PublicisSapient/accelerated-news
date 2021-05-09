@@ -92,7 +92,7 @@ Execute the following commands to install dependencies:
 ```sh
 # note: "--legacy-peer-deps" option is required for npm version > v7
 # see details here: https://github.com/storybookjs/storybook/issues/12983
-npm install --legacy-peer-deps option
+npm install --legacy-peer-deps
 ```
 
 Now execute the following commands to run the app:
