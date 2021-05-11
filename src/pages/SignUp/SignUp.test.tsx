@@ -8,7 +8,7 @@ describe('<SignUp />', () => {
     const { findByText, getByLabelText, getByText } = render(<SignUp />);
 
     // Enter valid user info and submit form
-    userEvent.type(getByLabelText('Display Name'), 'John Smith');
+    userEvent.type(getByLabelText('Full Name'), 'John Smith');
     userEvent.type(getByLabelText('Email'), 'johnsmith@gmail.com');
     userEvent.type(getByLabelText('Password'), 'let-me-in');
     userEvent.type(getByLabelText('Confirm Password'), 'let-me-in');

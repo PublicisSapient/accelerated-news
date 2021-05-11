@@ -8,7 +8,7 @@ import { UserInfo } from '../../models';
 import './SignUpForm.css';
 
 const schema = yup.object().shape({
-  displayName: yup.string().required(),
+  name: yup.string().required(),
   email: yup.string().email().required(),
   password: yup.string().required(),
   confirmPassword: yup
@@ -42,10 +42,10 @@ export const SignUpForm = ({ signUpError, onSubmit }: SignUpFormProps) => {
 
       <div className="mb-3">
         <TextField
-          id="displayName"
-          {...register('displayName')}
-          label="Display Name"
-          error={errors.displayName?.message}
+          id="name"
+          {...register('name')}
+          label="Full Name"
+          error={errors.name?.message}
         />
       </div>
 

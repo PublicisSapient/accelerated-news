@@ -54,7 +54,7 @@ export const Navbar = () => {
 
       {user !== undefined ? (
         <Fragment>
-          <div className="navbar__username">{user.displayName}</div>
+          <div className="navbar__username">{user.name}</div>
           <FaSignOutAlt
             className="navbar__signout"
             aria-labelledby="Sign out"

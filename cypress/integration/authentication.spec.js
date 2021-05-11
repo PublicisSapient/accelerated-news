@@ -1,7 +1,7 @@
 const baseUrl = 'http://localhost:3000';
 
 const user = {
-  displayName: 'John Smith',
+  name: 'John Smith',
   email: 'jsmith@example.com',
   password: 'let-me-in',
 };
@@ -18,7 +18,7 @@ describe('Authentication', function () {
     cy.contains('Sign up').click();
 
     // SignUp Page: Fill out sign up form and submit
-    cy.get('input[name="displayName"]').type(user.displayName);
+    cy.get('input[name="name"]').type(user.name);
     cy.get('input[name="email"]').type(user.email);
     cy.get('input[name="password"]').type(user.password);
     cy.get('input[name="confirmPassword"]').type(user.password);
@@ -28,7 +28,7 @@ describe('Authentication', function () {
     //   1. navbar shows user's name
     //   2. Manage Headlines button is visible
     cy.url().should('eq', `${baseUrl}/`);
-    cy.contains(user.displayName);
+    cy.contains(user.name);
     cy.contains('Manage Headlines');
 
     // Headlines Page: Sign out anc click on Sign in
@@ -43,6 +43,6 @@ describe('Authentication', function () {
     // Verify navigation to headlines page and
     //   1. navbar shows user's name
     cy.url().should('eq', `${baseUrl}/`);
-    cy.contains(user.displayName);
+    cy.contains(user.name);
   });
 });

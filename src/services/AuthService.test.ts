@@ -7,13 +7,13 @@ import { AuthService } from './AuthService';
 };
 
 const userInfo: UserInfo = {
-  displayName: 'John Smith',
+  name: 'John Smith',
   email: 'jsmith@example.com',
   password: 'let-me-in',
 };
 
 const user: User = {
-  displayName: 'John Smith',
+  name: 'John Smith',
   email: 'jsmith@example.com',
 };
 

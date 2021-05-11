@@ -1,6 +1,6 @@
 export interface User {
   email: string;
-  displayName: string;
+  name: string;
 }
 
 export interface UserInfo extends User {

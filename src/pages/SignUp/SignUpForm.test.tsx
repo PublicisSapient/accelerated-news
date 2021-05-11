@@ -19,7 +19,7 @@ describe('<SignUpForm />', () => {
     userEvent.click(getByText('Sign up'));
 
     // Expect to see validation errors on required fields
-    expect(await findByText('displayName is a required field')).toBeTruthy();
+    expect(await findByText('name is a required field')).toBeTruthy();
     expect(await findByText('email is a required field')).toBeTruthy();
     expect(await findByText('password is a required field')).toBeTruthy();
   });
@@ -44,7 +44,7 @@ describe('<SignUpForm />', () => {
     );
 
     // Enter valid user info and submit form
-    userEvent.type(getByLabelText('Display Name'), 'John Smith');
+    userEvent.type(getByLabelText('Full Name'), 'John Smith');
     userEvent.type(getByLabelText('Email'), 'johnsmith@gmail.com');
     userEvent.type(getByLabelText('Password'), 'let-me-in');
     userEvent.type(getByLabelText('Confirm Password'), 'let-me-in');
@@ -54,7 +54,7 @@ describe('<SignUpForm />', () => {
     await waitFor(() => expect(handleSubmit).toHaveBeenCalledTimes(1));
     expect(handleSubmit).toHaveBeenCalledWith(
       {
-        displayName: 'John Smith',
+        name: 'John Smith',
         email: 'johnsmith@gmail.com',
         password: 'let-me-in',
         confirmPassword: 'let-me-in',
