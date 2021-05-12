@@ -5,9 +5,8 @@ import { AuthState } from './AuthState';
 type AuthStateSetter = (authState: AuthState) => void;
 
 const AuthContext = React.createContext<AuthState | undefined>(undefined);
-const AuthSetterContext = React.createContext<AuthStateSetter | undefined>(
-  undefined
-);
+const AuthSetterContext =
+  React.createContext<AuthStateSetter | undefined>(undefined);
 
 // ---------- Hooks ----------
 function useAuthState(): AuthState {

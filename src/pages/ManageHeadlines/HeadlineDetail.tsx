@@ -31,9 +31,12 @@ export const HeadlineDetailExisting = ({
   onItemSelected,
 }: MasterDetailChildProps) => {
   const { isNew, itemId: headLineId } = selectionState;
-  const { isLoading, isError, error, data: headline } = useHeadlineQuery(
-    headLineId
-  );
+  const {
+    isLoading,
+    isError,
+    error,
+    data: headline,
+  } = useHeadlineQuery(headLineId);
   const updateHeadlineMutation = useHeadlineUpdate(headLineId);
 
   const handleSubmit = (headline: Headline) => {
