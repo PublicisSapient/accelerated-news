@@ -1,7 +1,9 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { MasterDetail, ViewVerticalContainer } from '../../components';
-import { HeadlineDetail, HeadlinesMaster } from '../../pages';
+import { HeadlineDetail } from '../../pages/ManageHeadlines/HeadlineDetail';
+import { HeadlinesMaster } from '../../pages/ManageHeadlines/HeadlinesMaster';
+import { ViewVerticalContainer } from '../Containers';
+import { MasterDetail } from './MasterDetail';
 
 export default {
   title: 'Components/MasterDetail',

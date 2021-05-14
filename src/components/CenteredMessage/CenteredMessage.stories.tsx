@@ -1,11 +1,9 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import {
-  CenteredMessage,
-  SimpleHeader,
-  ViewCenteredMessage,
-  ViewVerticalContainer,
-} from '../../components';
+import { ViewVerticalContainer } from '../Containers';
+import { SimpleHeader } from '../Header';
+import { CenteredMessage } from './CenteredMessage';
+import { ViewCenteredMessage } from './ViewCenteredMessage';
 
 export default {
   title: 'Components/CenteredMessage',

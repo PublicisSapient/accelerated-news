@@ -1,6 +1,8 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { Loading, SimpleHeader, ViewVerticalContainer } from '../../components';
+import { ViewVerticalContainer } from '../Containers';
+import { SimpleHeader } from '../Header';
+import { Loading } from './Loading';
 
 export default {
   title: 'Components/Loading',

@@ -1,16 +1,15 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-
+import { SimpleHeader } from '../Header';
 import {
   CenteredContainer,
   HorizontalContainer,
   ScrollingContainer,
-  SimpleHeader,
   VerticalContainer,
   ViewCenteredContainer,
   ViewHorizontalContainer,
   ViewVerticalContainer,
-} from '../../components';
+} from './Containers';
 
 export default {
   title: 'Components/Containers',

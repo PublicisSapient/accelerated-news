@@ -9,7 +9,6 @@ React Accelerate recommends using the following folder structure for your app:
   /mocks
   /models
   /pages
-  /stories
   /styles
   /test
   /utils
@@ -73,10 +72,6 @@ Contains service mocks for [Mock Service Worker](https://mswjs.io/).
 ### models
 
 Contains models (data structures) used by multiple features.
-
-### stories
-
-Contains Storybook stories for the entire app, organized in different folders.
 
 ### styles
 

@@ -3,7 +3,7 @@ import { Story, Meta } from '@storybook/react';
 import { yupResolver } from '@hookform/resolvers/yup';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
-import { TextField } from '../../components';
+import { TextField } from './TextField';
 
 // ---------- TestForm ----------
 const schema = yup.object().shape({

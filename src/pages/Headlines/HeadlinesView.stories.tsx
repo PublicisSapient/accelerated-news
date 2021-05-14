@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta, Story } from '@storybook/react';
 import { mockHeadlines } from '../../mocks/mockHeadlines';
-import { HeadlinesView } from '../../pages/Headlines/HeadlinesView';
+import { HeadlinesView } from './HeadlinesView';
 
 export default {
   title: 'Pages/Headlines',
