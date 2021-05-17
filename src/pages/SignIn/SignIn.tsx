@@ -3,8 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { ViewVerticalContainer } from '../../components';
 import { useAuthState, useAuthStateSetter } from '../../contexts';
 import { Credentials } from '../../models';
-import { SignInForm } from './SignInForm';
 import { AuthService } from '../../services';
+import { SignInForm } from './SignInForm';
 
 export const SignIn = () => {
   const authState = useAuthState();
