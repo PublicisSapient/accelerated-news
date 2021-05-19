@@ -28,8 +28,7 @@ const fetchUser = async (): Promise<User | undefined> => {
 
   try {
     const resp = await axios.get('/auth/me');
-    const { user } = resp.data;
-    return user;
+    return resp.data;
   } catch (e) {
     throw new Error(formatHttpError(e));
   }

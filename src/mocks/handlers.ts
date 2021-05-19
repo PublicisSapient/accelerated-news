@@ -58,7 +58,7 @@ function createErrorResponse(
 }
 
 export const handlers = [
-  /** get user information */
+  /** get user */
   rest.get(`${API_URL}/auth/me`, (req, res, ctx) => {
     const accessToken = parseAccessToken(req);
     if (!accessToken) {
@@ -76,10 +76,7 @@ export const handlers = [
     }
 
     const { password, ...user } = existingUser;
-    return createSuccessResponse(res, ctx, {
-      accessToken: accessToken,
-      user,
-    });
+    return createSuccessResponse(res, ctx, user);
   }),
 
   /** sign in */
