@@ -31,7 +31,7 @@ describe('Authentication', function () {
     cy.contains(user.name);
     cy.contains('Manage Headlines');
 
-    // Headlines Page: Sign out anc click on Sign in
+    // Headlines Page: Sign out and click on Sign in
     cy.get('svg[aria-labelledby="Sign out"]').click();
     cy.contains('Sign in').click();
 
