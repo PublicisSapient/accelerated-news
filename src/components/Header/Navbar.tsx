@@ -1,15 +1,14 @@
 import React, { Fragment } from 'react';
 import { FaSignOutAlt } from 'react-icons/fa';
 import { NavLink, useNavigate } from 'react-router-dom';
-import { useAuthState, useAuthStateSetter } from '../../contexts';
+import { useAuthContext } from '../../contexts';
 import { AuthService } from '../../services';
 import './Navbar.css';
 
 export const Navbar = () => {
-  const authState = useAuthState();
-  const setAuthState = useAuthStateSetter();
-  const navigate = useNavigate();
+  const { authState, setAuthState } = useAuthContext();
   const { user } = authState;
+  const navigate = useNavigate();
 
   /* istanbul ignore next */
   const handleSignIn = async () => {

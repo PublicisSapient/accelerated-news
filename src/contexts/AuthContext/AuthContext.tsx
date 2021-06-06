@@ -1,45 +1,32 @@
 import React, { useContext, useState } from 'react';
-import { AuthState } from './AuthState';
+import { User } from '../../models';
 
 // ---------- AuthContext ----------
+type AuthState = { user?: User };
 type AuthStateSetter = (authState: AuthState) => void;
 
-const AuthContext = React.createContext<AuthState | undefined>(undefined);
-const AuthSetterContext =
-  React.createContext<AuthStateSetter | undefined>(undefined);
-
-// ---------- Hooks ----------
-function useAuthState(): AuthState {
-  const authState = useContext(AuthContext);
-  /* istanbul ignore next */
-  if (authState === undefined) {
-    throw new Error('useAuthState must be used within a AuthContextProvider');
-  }
-  return authState;
-}
-
-function useAuthStateSetter(): AuthStateSetter {
-  const setAuthState = useContext(AuthSetterContext);
-  /* istanbul ignore next */
-  if (setAuthState === undefined) {
-    throw new Error(
-      'useAuthStateSetter must be used within a AuthContextProvider'
-    );
-  }
-  return setAuthState;
-}
+/** AuthContext contains AuthState and AuthStateSetter */
+const AuthContext =
+  React.createContext<
+    { authState: AuthState; setAuthState: AuthStateSetter } | undefined
+  >(undefined);
 
 // ---------- AuthContextProvider ----------
 const AuthContextProvider: React.FC = ({ children }) => {
   const [authState, setAuthState] = useState<AuthState>({});
 
-  return (
-    <AuthContext.Provider value={authState}>
-      <AuthSetterContext.Provider value={setAuthState}>
-        {children}
-      </AuthSetterContext.Provider>
-    </AuthContext.Provider>
-  );
+  const value = { authState, setAuthState };
+  return <AuthContext.Provider value={value}>{children}</AuthContext.Provider>;
 };
 
-export { AuthContextProvider, useAuthState, useAuthStateSetter };
+// ---------- useAuthContext ----------
+function useAuthContext() {
+  const authContext = useContext(AuthContext);
+  /* istanbul ignore next */
+  if (authContext === undefined) {
+    throw new Error('useAuthContext must be used within a AuthContextProvider');
+  }
+  return authContext;
+}
+
+export { AuthContextProvider, useAuthContext };

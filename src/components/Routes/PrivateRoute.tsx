@@ -1,7 +1,7 @@
 import React from 'react';
 import { RouteProps } from 'react-router';
 import { Route, Navigate } from 'react-router-dom';
-import { useAuthState } from '../../contexts';
+import { useAuthContext } from '../../contexts';
 import { AuthService } from '../../services';
 
 export interface PrivateRouteProps extends RouteProps {
@@ -10,9 +10,9 @@ export interface PrivateRouteProps extends RouteProps {
 
 /* istanbul ignore next */
 export const PrivateRoute = ({ redirectPath, ...props }: PrivateRouteProps) => {
-  const { user } = useAuthState();
+  const { authState } = useAuthContext();
 
-  if (!user) {
+  if (!authState.user) {
     AuthService.setSignInRedirectPath(props.path || '/');
     return <Navigate to={redirectPath} />;
   }

@@ -1,13 +1,13 @@
 import React, { Fragment } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Header, HorizontalContainer } from '../../components';
-import { useAuthState } from '../../contexts';
+import { useAuthContext } from '../../contexts';
 import { useHeadlinesQuery } from '../../services';
 import { HeadlinesView } from './HeadlinesView';
 
 export const Headlines = () => {
   const navigate = useNavigate();
-  const { user } = useAuthState();
+  const { authState } = useAuthContext();
   const { isLoading, isError, error, data: headlines } = useHeadlinesQuery();
 
   if (isLoading) {
@@ -30,7 +30,7 @@ export const Headlines = () => {
         <div className="container">
           <HorizontalContainer className="items-center mt-2 mb-3">
             <h1 className="title flex-1">Headlines</h1>
-            {user !== undefined ? (
+            {authState.user !== undefined ? (
               <button
                 className="btn-secondary btn-sm"
                 onClick={handleManageHeadlines}

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { Routes, Route } from 'react-router-dom';
 import { PrivateRoute } from './components';
-import { useAuthState, useAuthStateSetter } from './contexts';
+import { useAuthContext } from './contexts';
 import {
   Headlines,
   ManageHeadlines,
@@ -13,8 +13,7 @@ import {
 import { AuthService } from './services';
 
 export const App = () => {
-  const authState = useAuthState();
-  const setAuthState = useAuthStateSetter();
+  const { authState, setAuthState } = useAuthContext();
 
   // fetch user information on startup
   useEffect(() => {

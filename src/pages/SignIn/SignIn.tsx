@@ -1,14 +1,13 @@
 import React, { useCallback, useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ViewVerticalContainer } from '../../components';
-import { useAuthState, useAuthStateSetter } from '../../contexts';
+import { useAuthContext } from '../../contexts';
 import { Credentials } from '../../models';
 import { AuthService } from '../../services';
 import { SignInForm } from './SignInForm';
 
 export const SignIn = () => {
-  const authState = useAuthState();
-  const setAuthState = useAuthStateSetter();
+  const { authState, setAuthState } = useAuthContext();
   const navigate = useNavigate();
   const [signInError, setSignInError] = useState<string | undefined>(undefined);
 

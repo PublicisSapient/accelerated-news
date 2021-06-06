@@ -1,13 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ViewVerticalContainer } from '../../components';
-import { useAuthState, useAuthStateSetter } from '../../contexts';
+import { useAuthContext } from '../../contexts';
 import { AuthService } from '../../services';
 import { SignUpForm, FormUserInfo } from './SignUpForm';
 
 export const SignUp = () => {
-  const authState = useAuthState();
-  const setAuthState = useAuthStateSetter();
+  const { authState, setAuthState } = useAuthContext();
   const navigate = useNavigate();
   const [signUpError, setSignUpError] = useState<string | undefined>(undefined);
 
