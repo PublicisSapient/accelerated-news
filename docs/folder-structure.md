@@ -9,6 +9,7 @@ React Accelerate recommends using the following folder structure for your app:
   /mocks
   /models
   /pages
+  /services
   /styles
   /test
   /utils
@@ -27,15 +28,15 @@ From an implementation perspective, it is important to keep each feature
 independent of the others. This implies that any models (data structures),
 components, contexts and services needed by the feature should be contained
 within the associated page folder. For example, the diagram below shows some
-files that may be contained in the "Headlines" page folder:
+files that may be contained in the `HeadlinesPage` folder:
 
 ```
 /src
   /pages
-    /Headlines
-      headlines components
-      headlines contexts
-      headlines models
+    /HeadlinesPage
+      headlines page components
+      headlines page contexts
+      headlines page models
       ...
 ```
 
@@ -72,6 +73,10 @@ Contains service mocks for [Mock Service Worker](https://mswjs.io/).
 ### models
 
 Contains models (data structures) used by multiple features.
+
+### services
+
+Contains service functions (api calls, hooks etc.) used by multiple features.
 
 ### styles
 
