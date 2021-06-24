@@ -8,7 +8,7 @@ import {
 import { HeadlineDetail } from './HeadlineDetail';
 import { HeadlinesMaster } from './HeadlinesMaster';
 
-export const ManageHeadlines = () => {
+export const ManageHeadlinesPage = () => {
   return (
     <ViewVerticalContainer>
       <Header />

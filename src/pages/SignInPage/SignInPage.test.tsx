@@ -1,11 +1,11 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import { render } from '../../test/test-utils';
-import { SignIn } from './SignIn';
+import { SignInPage } from './SignInPage';
 
 describe('<SignIn />', () => {
   test('navigates to headlines page on successful login', async () => {
-    const { findByText, getByLabelText, getByText } = render(<SignIn />);
+    const { findByText, getByLabelText, getByText } = render(<SignInPage />);
 
     // Enter valid credentials and submit form
     userEvent.type(getByLabelText('Email'), 'johnsmith@gmail.com');

@@ -3,12 +3,12 @@ import { Routes, Route } from 'react-router-dom';
 import { PrivateRoute } from './components';
 import { useAuthContext } from './contexts';
 import {
-  Headlines,
-  ManageHeadlines,
-  NotFound,
-  SignIn,
-  SignUp,
-  Sports,
+  HeadlinesPage,
+  ManageHeadlinesPage,
+  NotFoundPage,
+  SignInPage,
+  SignUpPage,
+  SportsPage,
 } from './pages';
 import { AuthService } from './services';
 
@@ -31,16 +31,16 @@ export const App = () => {
 
   return (
     <Routes>
-      <Route path="/" element={<Headlines />} />
-      <Route path="/signin" element={<SignIn />} />
-      <Route path="/signup" element={<SignUp />} />
-      <Route path="/sports" element={<Sports />} />
+      <Route path="/" element={<HeadlinesPage />} />
+      <Route path="/signin" element={<SignInPage />} />
+      <Route path="/signup" element={<SignUpPage />} />
+      <Route path="/sports" element={<SportsPage />} />
       <PrivateRoute
         path="/manage/headlines"
         redirectPath="/signin"
-        element={<ManageHeadlines />}
+        element={<ManageHeadlinesPage />}
       />
-      <Route path="*" element={<NotFound />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Routes>
   );
 };

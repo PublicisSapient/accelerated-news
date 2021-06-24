@@ -1,7 +1,7 @@
 import React from 'react';
 import { Meta } from '@storybook/react';
-import { HeadlineDetail } from '../../pages/ManageHeadlines/HeadlineDetail';
-import { HeadlinesMaster } from '../../pages/ManageHeadlines/HeadlinesMaster';
+import { HeadlineDetail } from '../../pages/ManageHeadlinesPage/HeadlineDetail';
+import { HeadlinesMaster } from '../../pages/ManageHeadlinesPage/HeadlinesMaster';
 import { ViewVerticalContainer } from '../Containers';
 import { MasterDetail } from './MasterDetail';
 

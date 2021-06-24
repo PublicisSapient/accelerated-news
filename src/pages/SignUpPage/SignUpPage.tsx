@@ -5,7 +5,7 @@ import { useAuthContext } from '../../contexts';
 import { AuthService } from '../../services';
 import { SignUpForm, FormUserInfo } from './SignUpForm';
 
-export const SignUp = () => {
+export const SignUpPage = () => {
   const { authState, setAuthState } = useAuthContext();
   const navigate = useNavigate();
   const [signUpError, setSignUpError] = useState<string | undefined>(undefined);

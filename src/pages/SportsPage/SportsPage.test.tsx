@@ -1,6 +1,6 @@
 import React from 'react';
 import { render } from '../../test/test-utils';
-import { Sports } from './Sports';
+import { SportsPage } from './SportsPage';
 
 // Set API_URL in window environment
 (window as any)._env_ = {
@@ -9,7 +9,7 @@ import { Sports } from './Sports';
 
 describe('<Sports />', () => {
   test('renders correctly', async () => {
-    const { findAllByTestId } = render(<Sports />);
+    const { findAllByTestId } = render(<SportsPage />);
 
     // expect 4 standings
     const standings = await findAllByTestId('standing');

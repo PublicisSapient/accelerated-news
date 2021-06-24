@@ -3,7 +3,7 @@ import { Header, HorizontalContainer } from '../../components';
 import { StandingsView } from './StandingsView';
 import { useStandingsQuery } from './SportsService';
 
-export const Sports = () => {
+export const SportsPage = () => {
   const { isLoading, isError, error, data: standings } = useStandingsQuery();
 
   if (isLoading) {

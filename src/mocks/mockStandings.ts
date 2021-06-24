@@ -1,4 +1,4 @@
-import { TeamStanding } from '../pages/Sports/TeamStanding';
+import { TeamStanding } from '../pages/SportsPage/TeamStanding';
 
 export const mockStandings: Array<TeamStanding> = [
   {

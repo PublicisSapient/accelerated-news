@@ -5,7 +5,7 @@ import { useAuthContext } from '../../contexts';
 import { useHeadlinesQuery } from '../../services';
 import { HeadlinesView } from './HeadlinesView';
 
-export const Headlines = () => {
+export const HeadlinesPage = () => {
   const navigate = useNavigate();
   const { authState } = useAuthContext();
   const { isLoading, isError, error, data: headlines } = useHeadlinesQuery();

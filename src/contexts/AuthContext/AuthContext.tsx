@@ -6,10 +6,9 @@ type AuthState = { user?: User };
 type AuthStateSetter = (authState: AuthState) => void;
 
 /** AuthContext contains AuthState and AuthStateSetter */
-const AuthContext =
-  React.createContext<
-    { authState: AuthState; setAuthState: AuthStateSetter } | undefined
-  >(undefined);
+const AuthContext = React.createContext<
+  { authState: AuthState; setAuthState: AuthStateSetter } | undefined
+>(undefined);
 
 // ---------- AuthContextProvider ----------
 const AuthContextProvider: React.FC = ({ children }) => {

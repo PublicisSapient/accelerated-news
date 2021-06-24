@@ -3,15 +3,15 @@ import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { App } from './App';
 import { AuthContextProvider } from './contexts';
-import { Headlines, NotFound } from './pages';
+import { HeadlinesPage, NotFoundPage } from './pages';
 
-jest.mock('./pages/Headlines/Headlines');
-jest.mock('./pages/NotFound/NotFound');
+jest.mock('./pages/HeadlinesPage/HeadlinesPage');
+jest.mock('./pages/NotFoundPage/NotFoundPage');
 
 describe('<App />', () => {
   test('renders the Home page on default route', () => {
     // Arrange
-    (Headlines as jest.Mock).mockImplementation(() => (
+    (HeadlinesPage as jest.Mock).mockImplementation(() => (
       <div>HeadlinesPageMock</div>
     ));
 
@@ -30,7 +30,9 @@ describe('<App />', () => {
 
   test('renders the Not Found page for an invalid route', () => {
     // Arrange
-    (NotFound as jest.Mock).mockImplementation(() => <div>NotFoundMock</div>);
+    (NotFoundPage as jest.Mock).mockImplementation(() => (
+      <div>NotFoundMock</div>
+    ));
 
     // Act
     const { getByText } = render(

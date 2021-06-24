@@ -6,7 +6,7 @@ import { Credentials } from '../../models';
 import { AuthService } from '../../services';
 import { SignInForm } from './SignInForm';
 
-export const SignIn = () => {
+export const SignInPage = () => {
   const { authState, setAuthState } = useAuthContext();
   const navigate = useNavigate();
   const [signInError, setSignInError] = useState<string | undefined>(undefined);
