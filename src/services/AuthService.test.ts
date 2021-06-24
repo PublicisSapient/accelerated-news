@@ -1,4 +1,4 @@
-import { Credentials, User, UserInfo } from '../models';
+import { Credentials, User, SignUpInput } from '../models';
 import { AuthService } from './AuthService';
 
 // Set username in window environment
@@ -6,13 +6,14 @@ import { AuthService } from './AuthService';
   API_URL: 'http://localhost:8080',
 };
 
-const userInfo: UserInfo = {
+const signUpInput: SignUpInput = {
   name: 'John Smith',
   email: 'jsmith@example.com',
   password: 'let-me-in',
 };
 
 const user: User = {
+  id: '',
   name: 'John Smith',
   email: 'jsmith@example.com',
 };
@@ -26,7 +27,9 @@ const signInRedirectPath = '/manage/headlines';
 
 describe('AuthService', () => {
   it('allows user to sign up, sign out and sign in', async () => {
-    const actualUser1 = await AuthService.signUp(userInfo);
+    const actualUser1 = await AuthService.signUp(signUpInput);
+    // returned userId is a random number, stuff it in expected result
+    user.id = actualUser1.id;
     expect(actualUser1).toEqual(user);
 
     const actualUser2 = await AuthService.fetchUser();

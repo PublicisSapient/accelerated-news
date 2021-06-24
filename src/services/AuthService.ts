@@ -1,6 +1,6 @@
 import { formatHttpError } from '@http-utils/core';
 import axios from 'axios';
-import { Credentials, User, UserInfo } from '../models';
+import { Credentials, User, SignUpInput } from '../models';
 import { Storage } from '../utils';
 
 const TOKEN_KEY = 'accessToken';
@@ -55,9 +55,9 @@ const signOut = async (): Promise<Boolean> => {
   }
 };
 
-const signUp = async (userInfo: UserInfo): Promise<User> => {
+const signUp = async (signUpInput: SignUpInput): Promise<User> => {
   try {
-    const resp = await axios.post('/auth/signup', userInfo);
+    const resp = await axios.post('/auth/signup', signUpInput);
     const { accessToken, user } = resp.data;
     Storage.set(TOKEN_KEY, accessToken);
     return user;

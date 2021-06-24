@@ -1,12 +1,13 @@
 import { rest, RestRequest, ResponseComposition, RestContext } from 'msw';
 import { HttpStatusCode } from '@http-utils/core';
 import { v4 as uuidv4 } from 'uuid';
-import { Credentials, Headline, UserInfo } from '../models';
+import { Credentials, Headline, SignUpInput } from '../models';
 import { mockDb } from './mockDb';
 
 const {
+  createUser,
   getUser,
-  setUser,
+  getUserByEmail,
   getTokenValue,
   setTokenValue,
   removeToken,
@@ -65,12 +66,12 @@ export const handlers = [
       return createErrorResponse(res, ctx, Unauthorized, 'Unauthorized');
     }
 
-    const email = getTokenValue(accessToken);
-    if (!email) {
+    const userId = getTokenValue(accessToken);
+    if (!userId) {
       return createErrorResponse(res, ctx, Unauthorized, 'Unauthorized');
     }
 
-    const existingUser = getUser(email);
+    const existingUser = getUser(userId);
     if (!existingUser) {
       return createErrorResponse(res, ctx, Unauthorized, 'Unauthorized');
     }
@@ -83,7 +84,7 @@ export const handlers = [
   rest.post(`${API_URL}/auth/signin`, (req, res, ctx) => {
     const credentials: Credentials = req.body as Credentials;
 
-    const existingUser = getUser(credentials.email);
+    const existingUser = getUserByEmail(credentials.email);
     if (!existingUser || existingUser.password !== credentials.password) {
       return createErrorResponse(
         res,
@@ -94,7 +95,7 @@ export const handlers = [
     }
 
     const accessToken = uuidv4();
-    setTokenValue(accessToken, existingUser.email);
+    setTokenValue(accessToken, existingUser.id);
 
     const { password, ...user } = existingUser;
     return createSuccessResponse(res, ctx, {
@@ -116,8 +117,9 @@ export const handlers = [
 
   /** sign up */
   rest.post(`${API_URL}/auth/signup`, (req, res, ctx) => {
-    const requestedUser: UserInfo = req.body as UserInfo;
-    const existingUser = getUser(requestedUser?.email);
+    const signUpInput: SignUpInput = req.body as SignUpInput;
+
+    const existingUser = getUserByEmail(signUpInput.email);
     if (existingUser) {
       return createErrorResponse(
         res,
@@ -127,19 +129,17 @@ export const handlers = [
       );
     }
 
-    if (requestedUser) {
-      const createdUser = setUser(requestedUser);
-      if (createdUser) {
-        const accessToken = uuidv4();
-        setTokenValue(accessToken, requestedUser.email);
+    const userId = uuidv4();
+    const accessToken = uuidv4();
+    const newUser = { id: userId, ...signUpInput };
+    createUser(newUser);
+    setTokenValue(accessToken, newUser.id);
 
-        const { password, ...user } = createdUser;
-        return createSuccessResponse(res, ctx, {
-          accessToken,
-          user,
-        });
-      }
-    }
+    const { password, ...user } = newUser;
+    return createSuccessResponse(res, ctx, {
+      accessToken,
+      user,
+    });
   }),
 
   /** get headlines */

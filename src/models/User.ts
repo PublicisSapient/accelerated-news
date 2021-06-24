@@ -1,8 +1,5 @@
 export interface User {
+  id: string;
   email: string;
   name: string;
-}
-
-export interface UserInfo extends User {
-  password: string;
 }

@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { ViewVerticalContainer } from '../../components';
 import { useAuthContext } from '../../contexts';
 import { AuthService } from '../../services';
-import { SignUpForm, FormUserInfo } from './SignUpForm';
+import { SignUpForm, FormEntity } from './SignUpForm';
 
 export const SignUpPage = () => {
   const { authState, setAuthState } = useAuthContext();
@@ -19,10 +19,10 @@ export const SignUpPage = () => {
   }, [authState.user, navigate]);
 
   /* istanbul ignore next */
-  const handleSubmit = async (formUserInfo: FormUserInfo) => {
-    const { confirmPassword, ...userInfo } = formUserInfo;
+  const handleSubmit = async (formEntity: FormEntity) => {
+    const { confirmPassword, ...signUpInput } = formEntity;
     try {
-      const user = await AuthService.signUp(userInfo);
+      const user = await AuthService.signUp(signUpInput);
       // navigate before setting authState to avoid saving incorrect signInRedirect
       navigate('/');
       setAuthState({ ...authState, user });
