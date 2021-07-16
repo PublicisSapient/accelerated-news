@@ -1,16 +1,6 @@
 import React, { Fragment } from 'react';
 import { ErrorMessage } from './ErrorMessage';
 
-interface TextAreaInjectedProps {
-  id?: string;
-  'data-testid'?: string;
-  name?: string;
-  ref?: React.Ref<any>;
-  rows?: number;
-  onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
-  onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
-}
-
 export interface TextAreaFieldProps {
   /** used to make label and errorText accessible for screen readers */
   id?: string;
@@ -33,46 +23,27 @@ export interface TextAreaFieldProps {
   /** # of rows */
   rows?: number;
 
-  renderContainer?: (props: TextAreaInjectedProps) => JSX.Element;
-
   onBlur?: (e: React.FocusEvent<HTMLTextAreaElement>) => void;
   onChange?: (e: React.ChangeEvent<HTMLTextAreaElement>) => void;
 }
 
-/**
- * Uses the "Render Prop" pattern to pass through arbitrary props that it
- * doesn't understand.
- * See https://blog.andrewbran.ch/polymorphic-react-components/
- */
-export const TextAreaField = React.forwardRef(
-  (
-    {
-      id,
-      testId,
-      name,
-      label,
-      error,
-      rows = 2,
-      renderContainer = (props) => <textarea {...props} />,
-      onBlur,
-      onChange,
-    }: TextAreaFieldProps,
-    ref
-  ) => {
-    return (
-      <Fragment>
-        {label !== undefined ? <label htmlFor={id}>{label}</label> : null}
-        {renderContainer({
-          id,
-          'data-testid': testId,
-          name,
-          ref,
-          rows,
-          onBlur,
-          onChange,
-        })}
-        <ErrorMessage error={error} />
-      </Fragment>
-    );
-  }
-);
+export const TextAreaField = React.forwardRef<
+  HTMLTextAreaElement,
+  TextAreaFieldProps
+>(({ id, testId, name, label, error, rows = 2, onBlur, onChange }, ref) => {
+  return (
+    <Fragment>
+      {label !== undefined ? <label htmlFor={id}>{label}</label> : null}
+      <textarea
+        id={id}
+        data-testid={testId}
+        name={name}
+        ref={ref}
+        rows={rows}
+        onBlur={onBlur}
+        onChange={onChange}
+      />
+      <ErrorMessage error={error} />
+    </Fragment>
+  );
+});
