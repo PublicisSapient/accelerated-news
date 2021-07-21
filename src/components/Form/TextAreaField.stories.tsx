@@ -55,8 +55,8 @@ const Template: Story = () => {
   return (
     <div style={{ width: 320 }}>
       <TestForm onSubmit={setPerson} />
-      <div className="mt-5">
-        <h4>Form value</h4>
+      <div className="mt-2">
+        <h4 className="m-0">Form value</h4>
         <p>{person?.bio}</p>
       </div>
     </div>
