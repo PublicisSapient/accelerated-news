@@ -10,6 +10,14 @@ const getAccessToken = () => {
   return Storage.get(TOKEN_KEY);
 };
 
+const setAccessToken = (accessToken: string) => {
+  return Storage.set(TOKEN_KEY, accessToken);
+};
+
+const removeAccessToken = () => {
+  return Storage.remove(TOKEN_KEY);
+};
+
 const getSignInRedirectPath = () => {
   return Storage.get(SIGN_IN_REDIRECT_KEY, '/');
 };
@@ -38,7 +46,7 @@ const signIn = async (credentials: Credentials): Promise<User> => {
   try {
     const resp = await axios.post('/auth/signin', credentials);
     const { accessToken, user } = resp.data;
-    Storage.set(TOKEN_KEY, accessToken);
+    setAccessToken(accessToken);
     return user;
   } catch (e) {
     throw new Error(formatHttpError(e));
@@ -48,7 +56,7 @@ const signIn = async (credentials: Credentials): Promise<User> => {
 const signOut = async (): Promise<Boolean> => {
   try {
     const resp = await axios.post('/auth/signout');
-    Storage.remove(TOKEN_KEY);
+    removeAccessToken();
     return resp.data;
   } catch (e) {
     throw new Error(formatHttpError(e));
@@ -59,7 +67,7 @@ const signUp = async (signUpInput: SignUpInput): Promise<User> => {
   try {
     const resp = await axios.post('/auth/signup', signUpInput);
     const { accessToken, user } = resp.data;
-    Storage.set(TOKEN_KEY, accessToken);
+    setAccessToken(accessToken);
     return user;
   } catch (e) {
     throw new Error(formatHttpError(e));
@@ -68,6 +76,8 @@ const signUp = async (signUpInput: SignUpInput): Promise<User> => {
 
 export const AuthService = {
   getAccessToken,
+  setAccessToken,
+  removeAccessToken,
   getSignInRedirectPath,
   setSignInRedirectPath,
   removeSignInRedirectPath,
