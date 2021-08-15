@@ -69,6 +69,6 @@ describe('<SignUpForm />', () => {
     );
 
     // Expect to see the signup error
-    expect(await getByText('User already exists')).toBeTruthy();
+    expect(getByText('User already exists')).toBeTruthy();
   });
 });

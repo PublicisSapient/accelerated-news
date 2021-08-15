@@ -74,6 +74,6 @@ describe('<SignInForm />', () => {
     );
 
     // Expect to see the signin error
-    expect(await getByText('Unauthorized user')).toBeTruthy();
+    expect(getByText('Unauthorized user')).toBeTruthy();
   });
 });
