@@ -13,7 +13,7 @@
     "build-storybook": "build-storybook -s public",
     "cypress:open": "cypress open",
     "eject": "react-scripts eject",
-    "format": "prettier --write README.md 'src/**/{*.md,*.json,*.css,*.ts*}' 'cypress/integration/**/*'",
+    "format": "prettier --write README.md \"src/**/{*.md,*.json,*.css,*.ts*}\" \"cypress/integration/**/*\"",
     "lint": "eslint src",
     "start": "react-scripts start",
     "storybook": "start-storybook -p 6006 -s public",
