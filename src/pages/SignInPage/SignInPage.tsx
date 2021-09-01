@@ -32,7 +32,7 @@ export const SignInPage = () => {
       setAuthState({ ...authState, user });
       navigateToSignInRedirect();
     } catch (e) {
-      setSignInError(e.message);
+      setSignInError(e instanceof Error ? e.message : 'Unknown error');
     }
   };
 

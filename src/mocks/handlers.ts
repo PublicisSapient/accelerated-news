@@ -192,7 +192,12 @@ export const handlers = [
       updateHeadline(updatedHeadline);
       return res(ctx.status(200), ctx.json(updateHeadline));
     } catch (e) {
-      return createErrorResponse(res, ctx, NotFound, e.message);
+      return createErrorResponse(
+        res,
+        ctx,
+        NotFound,
+        e instanceof Error ? e.message : 'Unknown error'
+      );
     }
   }),
 

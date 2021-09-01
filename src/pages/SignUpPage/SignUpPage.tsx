@@ -27,7 +27,7 @@ export const SignUpPage = () => {
       navigate('/');
       setAuthState({ ...authState, user });
     } catch (e) {
-      setSignUpError(e.message);
+      setSignUpError(e instanceof Error ? e.message : 'Unknown error');
     }
   };
 
