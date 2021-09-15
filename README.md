@@ -12,7 +12,7 @@ to authenticated users.
 ## React Accelerate Features
 
 1. TypeScript based - for type safety
-2. [Opinionated folder structure](docs/folder-structure.md)
+2. [Opinionated folder structure](https://github.com/nareshbhatia/react-learning-resources/blob/main/docs/folder-structure.md)
 3. Foundational libraries
    - [React Router](https://reactrouter.com/)
 4. Essential tools
@@ -85,7 +85,8 @@ to authenticated users.
 ## Getting Started
 
 Make sure your development machine is set up for building React apps. See the
-recommended setup procedure [here](docs/dev-machine-setup.md).
+recommended setup procedure
+[here](https://github.com/nareshbhatia/react-learning-resources/blob/main/docs/mac-setup.md).
 
 Execute the following commands to install dependencies:
 
@@ -164,15 +165,4 @@ npm run format
 
 ## Learn More
 
-- [React Accelerate Documentation](docs)
-- [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started)
-- [React documentation](https://reactjs.org/)
-- [How to know what to test](https://kentcdodds.com/blog/how-to-know-what-to-test)
-- [Write tests. Not too many. Mostly integration.](https://kentcdodds.com/blog/write-tests)
-- [State Colocation - Where to Put State](https://kentcdodds.com/blog/state-colocation-will-make-your-react-app-faster)
-- [How to use React Context effectively](https://kentcdodds.com/blog/how-to-use-react-context-effectively)
-- [MindBEMding – getting your head ’round BEM syntax](https://csswizardry.com/2013/01/mindbemding-getting-your-head-round-bem-syntax/)
-- [Get BEM - Naming](http://getbem.com/naming/)
-- [Learn CSS Variables in 5 minutes](https://www.freecodecamp.org/news/learn-css-variables-in-5-minutes-80cf63b4025d/)
-- [Difference between CSS variables and preprocessor variables](https://css-tricks.com/difference-between-types-of-css-variables/)
-- [CSS Variables - Lea Verou](https://www.youtube.com/watch?v=2an6-WVPuJU)
+- [React Learning Resources](https://github.com/nareshbhatia/react-learning-resources)
