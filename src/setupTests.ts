@@ -8,6 +8,11 @@ import { server } from './mocks/server';
 // import AxiosInterceptors, otherwise service calls will fail
 import './services/AxiosInterceptors';
 
+// ----- Set API_URL in window environment -----
+(window as any)._env_ = {
+  API_URL: 'http://localhost:8080',
+};
+
 // ----- Set up Mock Service Worker -----
 // Establish API mocking before all tests.
 beforeAll(() => server.listen());

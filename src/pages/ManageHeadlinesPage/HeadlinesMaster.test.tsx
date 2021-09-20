@@ -3,11 +3,6 @@ import { mockHeadlines } from '../../mocks/mockHeadlines';
 import { render } from '../../test/test-utils';
 import { HeadlinesMaster } from './HeadlinesMaster';
 
-// Set API_URL in window environment
-(window as any)._env_ = {
-  API_URL: 'http://localhost:8080',
-};
-
 const handleStartNewItem = jest.fn();
 const handleItemSelected = jest.fn();
 const handleItemUpdated = jest.fn();
