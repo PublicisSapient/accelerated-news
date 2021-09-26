@@ -86,20 +86,31 @@ to authenticated users.
 
 Make sure your development machine is set up for building React apps. See the
 recommended setup procedure
-[here](https://github.com/nareshbhatia/react-learning-resources/blob/main/docs/mac-setup.md).
+[here](https://github.com/nareshbhatia/react-learning-resources#developer-machine-setup).
 
-Execute the following commands to install dependencies:
+Then execute the commands in one of the sections below depending on your
+preference of npm or yarn:
+
+### Building with npm
 
 ```sh
 # note: "--legacy-peer-deps" option is required for npm version > v7
 # see details here: https://github.com/storybookjs/storybook/issues/12983
 npm install --legacy-peer-deps
+
+# Execute the following commands to run the app:
+npm start
 ```
 
-Now execute the following commands to run the app:
+Now point your browser to http://localhost:3000/.
+
+### Building with yarn
 
 ```sh
-npm start
+yarn
+
+# Execute the following commands to run the app:
+yarn start
 ```
 
 Now point your browser to http://localhost:3000/.
