@@ -11,9 +11,9 @@ describe('Storage', () => {
 
   it('allows returning default values for keys', () => {
     const key = 'favoriteFruit';
-    const value = 'Mango';
-    const fruit = Storage.get(key, value);
-    expect(fruit).toBe(value);
+    const defaultValue = 'Mango';
+    const fruit = Storage.get(key, defaultValue);
+    expect(fruit).toBe(defaultValue);
   });
 
   it('allows removal of keys', () => {
