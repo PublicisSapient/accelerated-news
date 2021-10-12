@@ -78,6 +78,7 @@ describe('<TextAreaField />', () => {
       {
         bio: 'Front-end technologist and musician',
       },
+      // ignore the event that is sent to handleSubmit
       expect.anything()
     );
   });

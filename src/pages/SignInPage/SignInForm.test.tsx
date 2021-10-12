@@ -64,6 +64,7 @@ describe('<SignInForm />', () => {
         email: 'johnsmith@gmail.com',
         password: 'let-me-in',
       },
+      // ignore the event that is sent to handleSubmit
       expect.anything()
     );
   });

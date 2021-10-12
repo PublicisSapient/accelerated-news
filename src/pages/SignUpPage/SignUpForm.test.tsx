@@ -59,6 +59,7 @@ describe('<SignUpForm />', () => {
         password: 'let-me-in',
         confirmPassword: 'let-me-in',
       },
+      // ignore the event that is sent to handleSubmit
       expect.anything()
     );
   });

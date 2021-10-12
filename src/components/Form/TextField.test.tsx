@@ -88,6 +88,7 @@ describe('<TextField />', () => {
         firstName: 'John',
         lastName: 'Smith',
       },
+      // ignore the event that is sent to handleSubmit
       expect.anything()
     );
   });
