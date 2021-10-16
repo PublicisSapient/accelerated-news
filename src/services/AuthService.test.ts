@@ -1,11 +1,6 @@
 import { Credentials, User, SignUpInput } from '../models';
 import { AuthService } from './AuthService';
 
-// Set username in window environment
-(window as any)._env_ = {
-  API_URL: 'http://localhost:8080',
-};
-
 const signUpInput: SignUpInput = {
   name: 'John Smith',
   email: 'jsmith@example.com',

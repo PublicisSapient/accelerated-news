@@ -9,7 +9,11 @@ const handleStartNewItem = jest.fn();
 const handleItemSelected = jest.fn();
 const handleItemUpdated = jest.fn();
 
-// mock axios
+// In this test suite, we are mocking axios.
+// This allows us to create and update headlines without having to pass
+// an access token to the APIs.
+// An alternate approach would be to not mock axios and let MSW accept
+// a test token.
 jest.mock('axios');
 const mockedAxios = axios as jest.Mocked<typeof axios>;
 
@@ -19,10 +23,14 @@ const headline = {
   teaser: 'My teaser',
 };
 
+beforeEach(() => {
+  jest.resetAllMocks();
+});
+
 describe('<HeadlineDetail />', () => {
   test('allows to add a new item', async () => {
     const selectionState = { isNew: true, itemId: '', version: 0 };
-    mockedAxios.post.mockReturnValueOnce(
+    mockedAxios.post.mockReturnValue(
       Promise.resolve({
         status: 200,
         data: headline,
@@ -62,13 +70,13 @@ describe('<HeadlineDetail />', () => {
       itemId: mockHeadlines[1].id,
       version: 0,
     };
-    mockedAxios.get.mockReturnValueOnce(
+    mockedAxios.get.mockReturnValue(
       Promise.resolve({
         status: 200,
         data: mockHeadlines[1],
       })
     );
-    mockedAxios.put.mockReturnValueOnce(
+    mockedAxios.put.mockReturnValue(
       Promise.resolve({
         status: 200,
         data: mockHeadlines[1],

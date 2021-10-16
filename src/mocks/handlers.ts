@@ -2,6 +2,7 @@ import { rest, RestRequest, ResponseComposition, RestContext } from 'msw';
 import { HttpStatusCode } from '@http-utils/core';
 import { v4 as uuidv4 } from 'uuid';
 import { Credentials, Headline, SignUpInput } from '../models';
+import { MOCK_API_URL } from './constants';
 import { mockDb } from './mockDb';
 
 const {
@@ -17,8 +18,6 @@ const {
   updateHeadline,
   getStandings,
 } = mockDb;
-
-const API_URL = 'http://localhost:8080';
 
 const { Created, Forbidden, NotFound, Unauthorized } = HttpStatusCode;
 
@@ -60,7 +59,7 @@ function createErrorResponse(
 
 export const handlers = [
   /** get user */
-  rest.get(`${API_URL}/auth/me`, (req, res, ctx) => {
+  rest.get(`${MOCK_API_URL}/auth/me`, (req, res, ctx) => {
     const accessToken = parseAccessToken(req);
     if (!accessToken) {
       return createErrorResponse(res, ctx, Unauthorized, 'Unauthorized');
@@ -81,7 +80,7 @@ export const handlers = [
   }),
 
   /** sign in */
-  rest.post(`${API_URL}/auth/signin`, (req, res, ctx) => {
+  rest.post(`${MOCK_API_URL}/auth/signin`, (req, res, ctx) => {
     const credentials: Credentials = req.body as Credentials;
 
     const existingUser = getUserByEmail(credentials.email);
@@ -105,7 +104,7 @@ export const handlers = [
   }),
 
   /** sign out */
-  rest.post(`${API_URL}/auth/signout`, (req, res, ctx) => {
+  rest.post(`${MOCK_API_URL}/auth/signout`, (req, res, ctx) => {
     const accessToken = parseAccessToken(req);
     if (!accessToken) {
       return createSuccessResponse(res, ctx, true);
@@ -116,7 +115,7 @@ export const handlers = [
   }),
 
   /** sign up */
-  rest.post(`${API_URL}/auth/signup`, (req, res, ctx) => {
+  rest.post(`${MOCK_API_URL}/auth/signup`, (req, res, ctx) => {
     const signUpInput: SignUpInput = req.body as SignUpInput;
 
     const existingUser = getUserByEmail(signUpInput.email);
@@ -143,12 +142,12 @@ export const handlers = [
   }),
 
   /** get headlines */
-  rest.get(`${API_URL}/headlines`, (req, res, ctx) => {
+  rest.get(`${MOCK_API_URL}/headlines`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(getHeadlines()));
   }),
 
   /** get headline */
-  rest.get(`${API_URL}/headlines/:headlineId`, (req, res, ctx) => {
+  rest.get(`${MOCK_API_URL}/headlines/:headlineId`, (req, res, ctx) => {
     const { headlineId } = req.params;
     const headline = getHeadline(headlineId);
     if (headline !== undefined) {
@@ -159,7 +158,7 @@ export const handlers = [
   }),
 
   /** create a headline */
-  rest.post(`${API_URL}/headlines`, (req, res, ctx) => {
+  rest.post(`${MOCK_API_URL}/headlines`, (req, res, ctx) => {
     const accessToken = parseAccessToken(req);
     if (!accessToken) {
       return createErrorResponse(
@@ -176,7 +175,7 @@ export const handlers = [
   }),
 
   /** update a headline */
-  rest.put(`${API_URL}/headlines/:headlineId`, (req, res, ctx) => {
+  rest.put(`${MOCK_API_URL}/headlines/:headlineId`, (req, res, ctx) => {
     const accessToken = parseAccessToken(req);
     if (!accessToken) {
       return createErrorResponse(
@@ -202,7 +201,7 @@ export const handlers = [
   }),
 
   /** get standings */
-  rest.get(`${API_URL}/standings`, (req, res, ctx) => {
+  rest.get(`${MOCK_API_URL}/standings`, (req, res, ctx) => {
     return res(ctx.status(200), ctx.json(getStandings()));
   }),
 ];
