@@ -1,5 +1,5 @@
 import React, { Fragment } from 'react';
-import { fireEvent, getByText, render } from '../../test/test-utils';
+import { fireEvent, getByText, render, screen } from '../../test/test-utils';
 import { MasterDetail } from './MasterDetail';
 import { MasterDetailChildProps } from './MasterDetailChildProps';
 import { mockHeadlines } from '../../mocks/mockHeadlines';
@@ -66,7 +66,7 @@ export const HeadlineDetail = ({
 
 describe('MasterDetail', () => {
   it('clicking on an item in master shows it in detail', () => {
-    const { getByTestId } = render(
+    render(
       <MasterDetail
         MasterComponent={HeadlinesMaster}
         DetailComponent={HeadlineDetail}
@@ -76,11 +76,11 @@ describe('MasterDetail', () => {
     );
 
     // Select an item in master
-    const master = getByTestId('master-container');
+    const master = screen.getByTestId('master-container');
     fireEvent.click(getByText(master, mockHeadlines[1].title));
 
     // Make sure detail says "Existing" along with the correct title
-    const detail = getByTestId('detail-container');
+    const detail = screen.getByTestId('detail-container');
     const h1List = detail.getElementsByTagName('h1');
     expect(h1List[0].textContent).toBe('Existing');
 
@@ -89,7 +89,7 @@ describe('MasterDetail', () => {
   });
 
   it('allows to add a new item', () => {
-    const { getByText, getByTestId } = render(
+    render(
       <MasterDetail
         MasterComponent={HeadlinesMaster}
         DetailComponent={HeadlineDetail}
@@ -99,15 +99,15 @@ describe('MasterDetail', () => {
     );
 
     // Add a new item
-    fireEvent.click(getByText('Add'));
+    fireEvent.click(screen.getByText('Add'));
 
     // Make sure heading says "New"
-    const detail = getByTestId('detail-container');
+    const detail = screen.getByTestId('detail-container');
     const h1List = detail.getElementsByTagName('h1');
     expect(h1List[0].textContent).toBe('New');
 
     // Submit the new item
-    fireEvent.click(getByText('Submit'));
+    fireEvent.click(screen.getByText('Submit'));
 
     // Make sure heading says "Existing"
     expect(h1List[0].textContent).toBe('Existing');
@@ -119,7 +119,7 @@ describe('MasterDetail', () => {
   });
 
   it('allows to update an existing item', async () => {
-    const { container, getByTestId } = render(
+    render(
       <MasterDetail
         MasterComponent={HeadlinesMaster}
         DetailComponent={HeadlineDetail}
@@ -129,15 +129,15 @@ describe('MasterDetail', () => {
     );
 
     // Select an item in master
-    const master = getByTestId('master-container');
+    const master = screen.getByTestId('master-container');
     fireEvent.click(getByText(master, mockHeadlines[1].title));
 
     // Submit the existing item
-    fireEvent.click(getByText(container, 'Submit'));
+    fireEvent.click(screen.getByText('Submit'));
 
     // Make sure detail renders the item name
     // Note: This is because handleSubmit() selects mockHeadlines[0] (see above)
-    const detail = getByTestId('detail-container');
+    const detail = screen.getByTestId('detail-container');
     const h2List = detail.getElementsByTagName('h2');
     expect(h2List[0].textContent).toBe(mockHeadlines[1].title);
   });

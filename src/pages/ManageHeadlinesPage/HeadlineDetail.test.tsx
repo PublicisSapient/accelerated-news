@@ -1,7 +1,7 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
 import axios from 'axios';
-import { render, waitFor } from '../../test/test-utils';
+import { render, screen, waitFor } from '../../test/test-utils';
 import { mockHeadlines } from '../../mocks/mockHeadlines';
 import { HeadlineDetail } from './HeadlineDetail';
 
@@ -37,7 +37,7 @@ describe('<HeadlineDetail />', () => {
       })
     );
 
-    const { getByText, getByLabelText } = render(
+    render(
       <HeadlineDetail
         selectionState={selectionState}
         onStartNewItem={handleStartNewItem}
@@ -47,10 +47,10 @@ describe('<HeadlineDetail />', () => {
     );
 
     // add a new item
-    userEvent.type(getByLabelText('Title'), headline.title);
-    userEvent.type(getByLabelText('Attribution'), headline.attribution);
-    userEvent.type(getByLabelText('Teaser'), headline.teaser);
-    userEvent.click(getByText('Add'));
+    userEvent.type(screen.getByLabelText('Title'), headline.title);
+    userEvent.type(screen.getByLabelText('Attribution'), headline.attribution);
+    userEvent.type(screen.getByLabelText('Teaser'), headline.teaser);
+    userEvent.click(screen.getByText('Add'));
 
     // expect axios.post() to be called
     await waitFor(() =>
@@ -83,7 +83,7 @@ describe('<HeadlineDetail />', () => {
       })
     );
 
-    const { findByText, findByLabelText } = render(
+    render(
       <HeadlineDetail
         selectionState={selectionState}
         onStartNewItem={handleStartNewItem}
@@ -93,8 +93,8 @@ describe('<HeadlineDetail />', () => {
     );
 
     // Wait until Update button appears (i.e. headline has been fetched)
-    const titleField = await findByLabelText('Title');
-    const updateButton = await findByText('Update');
+    const titleField = await screen.findByLabelText('Title');
+    const updateButton = await screen.findByText('Update');
 
     // change the item
     userEvent.clear(titleField);

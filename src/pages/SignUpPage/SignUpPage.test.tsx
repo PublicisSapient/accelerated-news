@@ -1,17 +1,17 @@
 import React from 'react';
 import userEvent from '@testing-library/user-event';
-import { render } from '../../test/test-utils';
+import { render, screen } from '../../test/test-utils';
 import { SignUpPage } from './SignUpPage';
 
 describe('<SignUp />', () => {
   test('navigates to headlines page on successful login', async () => {
-    const { getByLabelText } = render(<SignUpPage />);
+    render(<SignUpPage />);
 
     // Enter valid user info and submit form
-    userEvent.type(getByLabelText('Full Name'), 'John Smith');
-    userEvent.type(getByLabelText('Email'), 'johnsmith@gmail.com');
-    userEvent.type(getByLabelText('Password'), 'let-me-in');
-    userEvent.type(getByLabelText('Confirm Password'), 'let-me-in');
+    userEvent.type(screen.getByLabelText('Full Name'), 'John Smith');
+    userEvent.type(screen.getByLabelText('Email'), 'johnsmith@gmail.com');
+    userEvent.type(screen.getByLabelText('Password'), 'let-me-in');
+    userEvent.type(screen.getByLabelText('Confirm Password'), 'let-me-in');
 
     // Commented out to avoid the following warning from Jest
     //   Cannot log after tests are done. Did you forget to wait for something async in your test?

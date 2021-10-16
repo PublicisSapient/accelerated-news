@@ -1,5 +1,5 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router';
 import { App } from './App';
 import { AuthContextProvider } from './contexts';
@@ -16,7 +16,7 @@ describe('<App />', () => {
     ));
 
     // Act
-    const { getByText } = render(
+    render(
       <AuthContextProvider>
         <MemoryRouter>
           <App />
@@ -25,7 +25,7 @@ describe('<App />', () => {
     );
 
     // Assert
-    expect(getByText('HeadlinesPageMock')).toBeTruthy();
+    expect(screen.getByText('HeadlinesPageMock')).toBeTruthy();
   });
 
   test('renders the Not Found page for an invalid route', () => {
@@ -35,7 +35,7 @@ describe('<App />', () => {
     ));
 
     // Act
-    const { getByText } = render(
+    render(
       <AuthContextProvider>
         <MemoryRouter initialEntries={['/invalid/route']}>
           <App />
@@ -44,6 +44,6 @@ describe('<App />', () => {
     );
 
     // Assert
-    expect(getByText('NotFoundMock')).toBeTruthy();
+    expect(screen.getByText('NotFoundMock')).toBeTruthy();
   });
 });

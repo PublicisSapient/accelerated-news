@@ -1,6 +1,6 @@
 import React from 'react';
 import { yupResolver } from '@hookform/resolvers/yup';
-import { render, waitFor } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import { useForm } from 'react-hook-form';
 import * as yup from 'yup';
@@ -49,28 +49,24 @@ beforeEach(() => {
 
 describe('<TextAreaField />', () => {
   test('displays a validation error if validation fails', async () => {
-    const { findByText, getByText } = render(
-      <TestForm onSubmit={handleSubmit} />
-    );
+    render(<TestForm onSubmit={handleSubmit} />);
 
     // Submit form with bio not filled
-    userEvent.click(getByText('Submit'));
+    userEvent.click(screen.getByText('Submit'));
 
     // Expect to see a validation error
-    expect(await findByText('bio is a required field')).toBeTruthy();
+    expect(await screen.findByText('bio is a required field')).toBeTruthy();
   });
 
   test('submits form information if all validations pass', async () => {
-    const { getByLabelText, getByText } = render(
-      <TestForm onSubmit={handleSubmit} />
-    );
+    render(<TestForm onSubmit={handleSubmit} />);
 
     // Enter valid information and submit form
     userEvent.type(
-      getByLabelText('Bio'),
+      screen.getByLabelText('Bio'),
       'Front-end technologist and musician'
     );
-    userEvent.click(getByText('Submit'));
+    userEvent.click(screen.getByText('Submit'));
 
     // Expect handleSubmit to be called with the entered information
     await waitFor(() => expect(handleSubmit).toHaveBeenCalledTimes(1));

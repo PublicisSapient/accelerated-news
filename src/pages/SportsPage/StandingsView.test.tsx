@@ -1,16 +1,14 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { mockStandings } from '../../mocks/mockStandings';
 import { StandingsView } from './StandingsView';
 
 describe('<StandingsView />', () => {
   test('renders correctly', () => {
-    const { getAllByTestId } = render(
-      <StandingsView standings={mockStandings} />
-    );
+    render(<StandingsView standings={mockStandings} />);
 
     // Verify that the correct number of rows are rendered
-    const rows = getAllByTestId('standing');
+    const rows = screen.getAllByTestId('standing');
     expect(rows.length).toBe(mockStandings.length);
 
     // Verify that standings are rendered correctly

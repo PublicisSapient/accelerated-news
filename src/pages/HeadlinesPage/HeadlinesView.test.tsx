@@ -1,16 +1,14 @@
 import React from 'react';
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { mockHeadlines } from '../../mocks/mockHeadlines';
 import { HeadlinesView } from './HeadlinesView';
 
 describe('<HeadlinesView />', () => {
   test('renders correctly', () => {
-    const { getAllByTestId } = render(
-      <HeadlinesView headlines={mockHeadlines} />
-    );
+    render(<HeadlinesView headlines={mockHeadlines} />);
 
     // Verify that the correct number of headlines are rendered
-    const headlineElements = getAllByTestId('headline');
+    const headlineElements = screen.getAllByTestId('headline');
     expect(headlineElements.length).toBe(mockHeadlines.length);
 
     // Verify that headlines are rendered correctly

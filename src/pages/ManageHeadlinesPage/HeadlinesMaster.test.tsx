@@ -1,6 +1,6 @@
 import React from 'react';
 import { mockHeadlines } from '../../mocks/mockHeadlines';
-import { render } from '../../test/test-utils';
+import { render, screen } from '../../test/test-utils';
 import { HeadlinesMaster } from './HeadlinesMaster';
 
 const handleStartNewItem = jest.fn();
@@ -11,7 +11,7 @@ describe('<HeadlinesMaster />', () => {
   test('renders correctly', async () => {
     const selectionState = { isNew: true, itemId: '', version: 0 };
 
-    const { findAllByTestId } = render(
+    render(
       <HeadlinesMaster
         selectionState={selectionState}
         onStartNewItem={handleStartNewItem}
@@ -21,14 +21,14 @@ describe('<HeadlinesMaster />', () => {
     );
 
     // expect 4 headlines
-    const headlines = await findAllByTestId('headline-card');
+    const headlines = await screen.findAllByTestId('headline-card');
     expect(headlines.length).toBe(4);
   });
 
   test('clicking on a headline calls handleItemSelected', async () => {
     const selectionState = { isNew: true, itemId: '', version: 0 };
 
-    const { findAllByTestId } = render(
+    render(
       <HeadlinesMaster
         selectionState={selectionState}
         onStartNewItem={handleStartNewItem}
@@ -38,7 +38,7 @@ describe('<HeadlinesMaster />', () => {
     );
 
     // click on headline[1]
-    const headlines = await findAllByTestId('headline-card');
+    const headlines = await screen.findAllByTestId('headline-card');
     headlines[1].click();
     expect(handleItemSelected).toBeCalledWith(mockHeadlines[1].id);
   });
