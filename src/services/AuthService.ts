@@ -36,7 +36,7 @@ const fetchUser = async (): Promise<User | undefined> => {
 
   try {
     const resp = await axios.get('/auth/me');
-    return resp.data;
+    return resp.data as User;
   } catch (e) {
     throw new Error(formatHttpError(e));
   }
@@ -45,7 +45,10 @@ const fetchUser = async (): Promise<User | undefined> => {
 const signIn = async (credentials: Credentials): Promise<User> => {
   try {
     const resp = await axios.post('/auth/signin', credentials);
-    const { accessToken, user } = resp.data;
+    const { accessToken, user } = resp.data as {
+      accessToken: string;
+      user: User;
+    };
     setAccessToken(accessToken);
     return user;
   } catch (e) {
@@ -57,7 +60,7 @@ const signOut = async (): Promise<Boolean> => {
   try {
     const resp = await axios.post('/auth/signout');
     removeAccessToken();
-    return resp.data;
+    return resp.data as boolean;
   } catch (e) {
     throw new Error(formatHttpError(e));
   }
@@ -66,7 +69,10 @@ const signOut = async (): Promise<Boolean> => {
 const signUp = async (signUpInput: SignUpInput): Promise<User> => {
   try {
     const resp = await axios.post('/auth/signup', signUpInput);
-    const { accessToken, user } = resp.data;
+    const { accessToken, user } = resp.data as {
+      accessToken: string;
+      user: User;
+    };
     setAccessToken(accessToken);
     return user;
   } catch (e) {

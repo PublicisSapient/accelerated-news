@@ -12,7 +12,7 @@ axios.interceptors.request.use(async (config) => {
   // add access token if present
   const token = AuthService.getAccessToken();
   if (token) {
-    config.headers.Authorization = `Bearer ${token}`;
+    config.headers!.Authorization = `Bearer ${token}`;
   }
 
   return config;

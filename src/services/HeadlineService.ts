@@ -12,7 +12,7 @@ import { Headline } from '../models';
 export const fetchHeadlines = async (): Promise<Array<Headline>> => {
   try {
     const resp = await axios.get('/headlines');
-    return resp.data;
+    return resp.data as Array<Headline>;
   } catch (e) {
     throw new Error(formatHttpError(e));
   }
@@ -31,7 +31,7 @@ export const fetchHeadline = async ({
   try {
     const [, headlineId] = queryKey;
     const resp = await axios.get(`/headlines/${headlineId}`);
-    return resp.data;
+    return resp.data as Headline;
   } catch (e) {
     throw new Error(formatHttpError(e));
   }
