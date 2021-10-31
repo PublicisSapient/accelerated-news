@@ -1,7 +1,7 @@
 import React from 'react';
+import { render } from '../../test/test-utils';
 import { CenteredMessage } from './CenteredMessage';
 import { ViewCenteredMessage } from './ViewCenteredMessage';
-import { render } from '@testing-library/react';
 
 describe('CenteredMessage', () => {
   test('CenteredMessage renders correctly', () => {

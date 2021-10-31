@@ -1,7 +1,6 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
 import axios from 'axios';
-import { render, screen, waitFor } from '../../test/test-utils';
+import { render, screen, userEvent, waitFor } from '../../test/test-utils';
 import { mockHeadlines } from '../../mocks/mockHeadlines';
 import { HeadlineDetail } from './HeadlineDetail';
 

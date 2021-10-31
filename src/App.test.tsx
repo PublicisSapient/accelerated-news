@@ -1,9 +1,7 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
-import { BrowserRouter as Router } from 'react-router-dom';
 import { App } from './App';
-import { AuthContextProvider } from './contexts';
 import { HeadlinesPage, NotFoundPage } from './pages';
+import { render, screen } from './test/test-utils';
 
 jest.mock('./pages/HeadlinesPage/HeadlinesPage');
 jest.mock('./pages/NotFoundPage/NotFoundPage');
@@ -16,13 +14,7 @@ describe('<App />', () => {
     ));
 
     // Act
-    render(
-      <AuthContextProvider>
-        <Router>
-          <App />
-        </Router>
-      </AuthContextProvider>
-    );
+    render(<App />);
 
     // Assert
     expect(screen.getByText('HeadlinesPageMock')).toBeTruthy();
@@ -34,16 +26,8 @@ describe('<App />', () => {
       <div>NotFoundMock</div>
     ));
 
-    window.history.pushState({}, 'Invalid Page', '/invalid/route')
-
     // Act
-    render(
-      <AuthContextProvider>
-        <Router>
-          <App />
-        </Router>
-      </AuthContextProvider>
-    );
+    render(<App />, { initialRoute: '/invalid/route' });
 
     // Assert
     expect(screen.getByText('NotFoundMock')).toBeTruthy();

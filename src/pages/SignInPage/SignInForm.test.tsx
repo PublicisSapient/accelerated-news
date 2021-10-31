@@ -1,6 +1,5 @@
 import React from 'react';
-import userEvent from '@testing-library/user-event';
-import { render, screen, waitFor } from '../../test/test-utils';
+import { render, screen, userEvent, waitFor } from '../../test/test-utils';
 import { SignInForm } from './SignInForm';
 
 const handleSubmit = jest.fn();

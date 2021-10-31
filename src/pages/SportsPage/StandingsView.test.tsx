@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import { mockStandings } from '../../mocks/mockStandings';
+import { render, screen } from '../../test/test-utils';
 import { StandingsView } from './StandingsView';
 
 describe('<StandingsView />', () => {

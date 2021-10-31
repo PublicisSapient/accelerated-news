@@ -1,6 +1,6 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
 import { mockHeadlines } from '../../mocks/mockHeadlines';
+import { render, screen } from '../../test/test-utils';
 import { HeadlinesView } from './HeadlinesView';
 
 describe('<HeadlinesView />', () => {
