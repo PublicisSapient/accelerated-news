@@ -1,6 +1,6 @@
 import React from 'react';
 import { render, screen } from '@testing-library/react';
-import { MemoryRouter } from 'react-router';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { App } from './App';
 import { AuthContextProvider } from './contexts';
 import { HeadlinesPage, NotFoundPage } from './pages';
@@ -18,9 +18,9 @@ describe('<App />', () => {
     // Act
     render(
       <AuthContextProvider>
-        <MemoryRouter>
+        <Router>
           <App />
-        </MemoryRouter>
+        </Router>
       </AuthContextProvider>
     );
 
@@ -34,12 +34,14 @@ describe('<App />', () => {
       <div>NotFoundMock</div>
     ));
 
+    window.history.pushState({}, 'Invalid Page', '/invalid/route')
+
     // Act
     render(
       <AuthContextProvider>
-        <MemoryRouter initialEntries={['/invalid/route']}>
+        <Router>
           <App />
-        </MemoryRouter>
+        </Router>
       </AuthContextProvider>
     );
 

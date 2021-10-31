@@ -1,6 +1,6 @@
 import React, { ReactElement, Suspense } from 'react';
 import { render, RenderOptions } from '@testing-library/react';
-import { MemoryRouter as Router } from 'react-router-dom';
+import { BrowserRouter as Router } from 'react-router-dom';
 import { QueryClient, QueryClientProvider } from 'react-query';
 import { ErrorBoundary, Loading } from '../components';
 import { AuthContextProvider, EnvProvider } from '../contexts';
