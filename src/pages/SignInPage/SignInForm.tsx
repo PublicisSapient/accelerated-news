@@ -49,7 +49,11 @@ export const SignInForm = ({ signInError, onSubmit }: SignInFormProps) => {
         />
       </div>
 
-      <button className="btn-lg w-full mb-3" aria-label="Sign in" type="submit">
+      <button
+        className="btn-primary btn-lg w-full mb-3"
+        aria-label="Sign in"
+        type="submit"
+      >
         Sign in
       </button>
 

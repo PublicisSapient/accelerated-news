@@ -78,7 +78,7 @@ export const SignUpForm = ({ signUpError, onSubmit }: SignUpFormProps) => {
         />
       </div>
 
-      <button className="btn-lg w-full mb-3" type="submit">
+      <button className="btn-primary btn-lg w-full mb-3" type="submit">
         Sign up
       </button>
 

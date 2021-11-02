@@ -3,11 +3,11 @@
 }
 
 .headline__attribution {
-  font-size: 12px;
+  font-size: var(--font-size-xs);
   color: var(--text-muted);
-  margin-bottom: 8px;
+  margin-bottom: var(--sp-1);
 }
 
 .headline__teaser {
-  margin-bottom: 32px;
+  margin-bottom: var(--sp-4);
 }

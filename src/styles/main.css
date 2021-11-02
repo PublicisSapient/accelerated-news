@@ -1,5 +1,161 @@
+/*
+  This is a simple stylesheet to style starter components with minimal fuss.
+  Feel free to replace it with your choice of styling mechanism.
+*/
+
+html {
+  box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+body {
+  color: var(--text-default);
+  background-color: var(--bg-default);
+  margin: 0;
+  font-family: Inter, sans-serif;
+  font-size: 1rem;
+  font-weight: 400;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: 500;
+  margin: 0;
+}
+
+h1 {
+  font-size: var(--font-size-3xl);
+}
+
+h2 {
+  font-size: var(--font-size-2xl);
+}
+
+h3 {
+  font-size: var(--font-size-xl);
+}
+
+h4 {
+  font-size: var(--font-size-lg);
+}
+
+h5 {
+  font-size: var(--font-size-base);
+}
+
+h6 {
+  font-size: var(--font-size-sm);
+}
+
+p {
+  margin-top: 0;
+}
+
+.title {
+  font-size: var(--font-size-xl);
+  font-weight: 400;
+  line-height: 1;
+  margin: 0;
+}
+
+.title2 {
+  font-size: var(--font-size-sm);
+  font-weight: 500;
+  line-height: 1;
+  margin: 0;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+a {
+  color: var(--primary-main);
+  text-decoration: none;
+}
+
+table {
+  width: 100%;
+  border: none;
+  border-collapse: collapse;
+  border-spacing: 0;
+  text-align: left;
+}
+
+table tr:nth-of-type(2n) {
+  background-color: var(--grey-100);
+}
+
+td,
+th {
+  vertical-align: middle;
+  padding: var(--px-12) var(--px-4);
+}
+
+thead {
+  border-bottom: var(--px-2) solid var(--grey-300);
+}
+
+tfoot {
+  font-size: var(--font-size-lg);
+  font-weight: 500;
+  border-top: var(--px-2) solid var(--grey-300);
+}
+
+/* ----- Typography ----- */
+.text-center {
+  text-align: center;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.text-primary-500 {
+  color: var(--primary-500);
+}
+
+.text-success {
+  color: var(--success-main);
+}
+
+.text-info {
+  color: var(--info-main);
+}
+
+.text-warning {
+  color: var(--warning-main);
+}
+
+.text-error {
+  color: var(--error-main);
+}
+
+/* ----- Interactivity ----- */
+.cursor-pointer {
+  cursor: pointer;
+}
+
+/* ----- container ----- */
+.container {
+  max-width: var(--grid-maxWidth);
+  margin: 0 auto;
+  padding: 0 var(--sp-3);
+  width: 100%;
+}
+
 /* ----- Responsive ----- */
-@media (min-width: 480px) {
+@media (min-width: 560px) {
   .mobile {
     display: none;
   }
@@ -8,7 +164,7 @@
 .desktop {
   display: none;
 }
-@media (min-width: 480px) {
+@media (min-width: 560px) {
   .desktop {
     display: block;
   }
@@ -29,6 +185,10 @@
 
 .flex-1 {
   flex: 1;
+}
+
+.flex-2 {
+  flex: 2;
 }
 
 .flex-grow-1 {
@@ -97,7 +257,15 @@
 }
 
 .w-320 {
-  width: 320px;
+  width: var(--px-320);
+}
+
+.w-400 {
+  width: var(--px-400);
+}
+
+.w-640 {
+  width: var(--px-640);
 }
 
 .w-full {
@@ -108,81 +276,98 @@
   width: 100vh;
 }
 
+.max-w-400 {
+  max-width: var(--px-400);
+}
+
 /* ----- Margin ----- */
 .m-0 {
   margin: 0;
 }
 
 .m-1 {
-  margin: var(--spacing-1);
+  margin: var(--sp-1);
 }
 
 .m-2 {
-  margin: var(--spacing-2);
+  margin: var(--sp-2);
 }
 
 .m-3 {
-  margin: var(--spacing-3);
+  margin: var(--sp-3);
 }
 
-.ml-1 {
-  margin-left: var(--spacing-1);
-}
-
-.ml-2 {
-  margin-left: var(--spacing-2);
-}
-
-.ml-3 {
-  margin-left: var(--spacing-3);
-}
-
-.mr-1 {
-  margin-right: var(--spacing-1);
-}
-
-.mr-2 {
-  margin-right: var(--spacing-2);
-}
-
-.mr-3 {
-  margin-right: var(--spacing-3);
+.mt-0 {
+  margin-top: 0;
 }
 
 .mt-1 {
-  margin-top: var(--spacing-1);
+  margin-top: var(--sp-1);
 }
 
 .mt-2 {
-  margin-top: var(--spacing-2);
+  margin-top: var(--sp-2);
 }
 
 .mt-3 {
-  margin-top: var(--spacing-3);
+  margin-top: var(--sp-3);
+}
+
+.mt-4 {
+  margin-top: var(--sp-4);
+}
+
+.mt-5 {
+  margin-top: var(--sp-5);
+}
+
+.mb-0 {
+  margin-bottom: 0;
 }
 
 .mb-1 {
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--sp-1);
 }
 
 .mb-2 {
-  margin-bottom: var(--spacing-2);
+  margin-bottom: var(--sp-2);
 }
 
 .mb-3 {
-  margin-bottom: var(--spacing-3);
+  margin-bottom: var(--sp-3);
 }
 
 .mb-4 {
-  margin-bottom: var(--spacing-4);
+  margin-bottom: var(--sp-4);
 }
 
 .mb-5 {
-  margin-bottom: var(--spacing-5);
+  margin-bottom: var(--sp-5);
 }
 
-.mb-6 {
-  margin-bottom: var(--spacing-6);
+.ml-0 {
+  left: 0;
+}
+
+.ml-1 {
+  margin-left: var(--sp-1);
+}
+
+.ml-2 {
+  margin-left: var(--sp-2);
+}
+
+.ml-3 {
+  margin-left: var(--sp-3);
+}
+
+.ml-4 {
+  margin-left: var(--sp-4);
+}
+
+.my-2 {
+  margin-top: var(--sp-2);
+  margin-bottom: var(--sp-2);
 }
 
 /* ----- Padding ----- */
@@ -191,37 +376,120 @@
 }
 
 .p-1 {
-  padding: var(--spacing-1);
+  padding: var(--sp-1);
 }
 
 .p-2 {
-  padding: var(--spacing-2);
+  padding: var(--sp-2);
 }
 
 .p-3 {
-  padding: var(--spacing-3);
+  padding: var(--sp-3);
+}
+
+.px-1 {
+  padding-left: var(--sp-1);
+  padding-right: var(--sp-1);
 }
 
 .px-2 {
-  padding: 0 var(--spacing-2);
+  padding-left: var(--sp-2);
+  padding-right: var(--sp-2);
+}
+
+.px-3 {
+  padding-left: var(--sp-3);
+  padding-right: var(--sp-3);
+}
+
+.px-4 {
+  padding-left: var(--sp-4);
+  padding-right: var(--sp-4);
+}
+
+.py-1 {
+  padding-top: var(--sp-1);
+  padding-bottom: var(--sp-1);
+}
+
+.py-2 {
+  padding-top: var(--sp-2);
+  padding-bottom: var(--sp-2);
+}
+
+.py-3 {
+  padding-top: var(--sp-3);
+  padding-bottom: var(--sp-3);
+}
+
+.py-4 {
+  padding-top: var(--sp-4);
+  padding-bottom: var(--sp-4);
+}
+
+/* ----- Buttons ----- */
+button {
+  background-color: var(--neutral-100);
+  color: var(--text-default);
+  border: 1px solid transparent;
+  border-radius: var(--px-4);
+  padding: var(--px-10) var(--px-20);
+  font-size: var(--font-size-base);
+  font-weight: 500;
+  line-height: 1;
+}
+
+.btn-sm {
+  padding: var(--px-6) var(--px-10);
+}
+@media (min-width: 560px) {
+  .btn-sm {
+    padding: var(--px-6) var(--px-20);
+  }
+}
+
+.btn-lg {
+  font-size: var(--font-size-lg);
+  line-height: 1.5;
+}
+
+.btn-primary {
+  background-color: var(--primary-main);
+  color: var(--text-primary-default);
+}
+
+.btn-primary:hover {
+  background-color: var(--primary-600);
+}
+
+.btn-secondary {
+  background-color: var(--secondary-main);
+  color: var(--text-secondary-default);
+}
+
+.btn-secondary:hover {
+  background-color: var(--secondary-500);
+}
+
+.btn-outline-secondary {
+  background-color: transparent;
+  color: var(--text-secondary-default);
+  border: 1px solid var(--text-secondary-default);
+}
+
+/* ----- Dividers ----- */
+.divider-left {
+  border-left: 1px solid var(--grey-300);
 }
 
 /* ----- Borders ----- */
 .rounded {
-  border-radius: 4px;
+  border-radius: var(--px-4);
 }
 
 /* ----- Overflow ----- */
 .overflow-auto {
   overflow: auto;
-}
-
-/* ----- Typography ----- */
-.title {
-  font-size: 24px;
-  font-weight: 400;
-  line-height: 1;
-  margin: 0;
 }
 
 /* ----- Backgrounds ----- */
@@ -246,10 +514,14 @@
   background-color: var(--bg-paper);
 }
 
+.border-paper {
+  border: 1px solid var(--neutral-100);
+}
+
 /* ----- Card ----- */
 .card {
-  padding: var(--spacing-2);
-  border-radius: 4px;
+  padding: var(--sp-2);
+  border-radius: var(--px-4);
   cursor: pointer;
 }
 
@@ -266,37 +538,24 @@
 /* ----- Forms ----- */
 label {
   display: inline-block;
-  margin-bottom: var(--spacing-1);
+  margin-bottom: var(--sp-1);
 }
 
-/* ----- Buttons ----- */
-.btn {
-  padding: 1rem 2rem;
+input,
+textarea {
+  border-radius: var(--px-4);
+  border: 1px solid var(--grey-300);
+  font-family: inherit;
+  font-size: var(--font-size-base);
+  transition: all 0.2s ease;
 }
 
-.btn-sm {
-  padding: 0.6rem 1rem;
-}
-@media (min-width: 480px) {
-  .btn-sm {
-    padding: 0.6rem 2rem;
-  }
+input {
+  padding: var(--px-14);
 }
 
-.btn-lg {
-  font-size: 20px;
-  line-height: 1.5;
-}
-
-.btn-secondary {
-  background-color: var(--secondary-main);
-  color: var(--text-secondary-default);
-}
-
-.btn-outline-secondary {
-  background-color: transparent;
-  color: var(--text-secondary-default);
-  border: 1px solid var(--text-secondary-default);
+textarea {
+  padding: var(--px-8);
 }
 
 :root {
@@ -348,6 +607,22 @@ label {
   --neutral-800: #243b53;
   --neutral-900: #102a43;
 
+  --success-light: #4caf50;
+  --success-main: #2e7d32;
+  --success-dark: #1b5e20;
+
+  --info-light: #03a9f4;
+  --info-main: #0288d1;
+  --info-dark: #01579b;
+
+  --warning-light: #ff9800;
+  --warning-main: #ed6c02;
+  --warning-dark: #e65100;
+
+  --error-light: #ef5350;
+  --error-main: #d32f2f;
+  --error-dark: #c62828;
+
   --bg-default: var(--grey-50);
   --bg-paper: var(--white);
 
@@ -374,18 +649,52 @@ label {
   /* text colors on secondary background */
   --text-secondary-default: var(--neutral-900);
 
-  /* ----- Chota Overrides ----- */
-  --bg-color: var(--grey-50);
-  --color-primary: var(--primary-800);
-  --font-color: var(--neutral-900);
-  --font-family-sans: Inter, sans-serif;
-  --grid-maxWidth: 80rem;
+  /* ----- pixel to rem conversion based on 16px browser default size ----- */
+  --px-2: 0.125rem;
+  --px-4: 0.25rem;
+  --px-6: 0.375rem;
+  --px-8: 0.5rem;
+  --px-10: 0.625rem;
+  --px-12: 0.75rem;
+  --px-14: 0.875rem;
+  --px-16: 1rem;
+  --px-18: 1.125rem;
+  --px-20: 1.25rem;
+  --px-22: 1.375rem;
+  --px-24: 1.5rem;
+  --px-26: 1.625rem;
+  --px-28: 1.75rem;
+  --px-30: 1.875rem;
+  --px-32: 2rem;
+  --px-34: 2.125rem;
+  --px-36: 2.25rem;
+  --px-38: 2.375rem;
+  --px-40: 2.5rem;
+  --px-48: 3rem;
+  --px-56: 3.5rem;
+  --px-320: 20rem;
+  --px-400: 25rem;
+  --px-640: 40rem;
+  --px-800: 50rem;
+  --px-1280: 80rem;
 
   /* ----- Spacing ----- */
-  --spacing-1: 8px;
-  --spacing-2: 16px;
-  --spacing-3: 24px;
-  --spacing-4: 32px;
-  --spacing-5: 40px;
-  --spacing-6: 48px;
+  --sp-1: var(--px-8);
+  --sp-2: var(--px-16);
+  --sp-3: var(--px-24);
+  --sp-4: var(--px-32);
+  --sp-5: var(--px-40);
+  --sp-6: var(--px-48);
+
+  /* ----- Font Size ----- */
+  --font-size-xs: var(--px-12);
+  --font-size-sm: var(--px-14);
+  --font-size-base: var(--px-16);
+  --font-size-lg: var(--px-20);
+  --font-size-xl: var(--px-24);
+  --font-size-2xl: var(--px-28);
+  --font-size-3xl: var(--px-32);
+
+  --grid-maxWidth: var(--px-800);
+  --grid-gutter: var(--px-20);
 }

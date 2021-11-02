@@ -45,10 +45,8 @@ to authenticated users.
 ## Implementation decisions made in this example
 
 1. For this example, we have chosen to use pure CSS and CSS Variables to
-   implement a simple design system. We have used
-   [Chota](https://jenil.github.io/chota/), a lightweight CSS framework, to get
-   us started with some foundational styles. Obviously you can use any other
-   styling framework in your own apps.
+   implement a simple design system. Obviously you can use any styling framework
+   and component library in your own apps.
 2. We have used [BEM](https://en.bem.info/) to properly namespace our styles. Of
    course, this is not needed if you use more modern techniques like CSS Modules
    or CSS-in-JS. However, it is always good to know the classic CSS techniques.

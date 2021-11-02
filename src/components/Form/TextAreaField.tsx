@@ -1,5 +1,6 @@
 import React, { Fragment } from 'react';
 import { ErrorMessage } from './ErrorMessage';
+import './TextAreaField.css';
 
 export interface TextAreaFieldProps {
   /** used to make label and errorText accessible for screen readers */
@@ -39,6 +40,7 @@ export const TextAreaField = React.forwardRef<
         data-testid={testId}
         name={name}
         ref={ref}
+        className="textarea-field__input"
         rows={rows}
         onBlur={onBlur}
         onChange={onChange}

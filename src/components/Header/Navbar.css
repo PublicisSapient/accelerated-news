@@ -1,19 +1,14 @@
 .navbar {
   display: flex;
   align-items: center;
-  min-height: 5.6rem;
+  min-height: var(--px-56);
 }
 
 .navbar__brand {
   color: var(--text-primary-default);
-  font-size: 20px;
+  font-size: var(--font-size-lg);
   font-weight: 400;
-  margin-right: var(--spacing-2);
-}
-@media (min-width: 480px) {
-  .navbar__brand {
-    margin-right: var(--spacing-3);
-  }
+  margin-right: var(--sp-2);
 }
 
 .navbar ul {
@@ -26,7 +21,7 @@
 .navbar__link {
   color: var(--text-primary-muted);
   font-weight: 400;
-  padding: var(--spacing-1);
+  padding: var(--sp-1);
 }
 
 .navbar__link:hover {
@@ -34,17 +29,18 @@
   text-decoration: none;
 }
 
-/* override chota hover behavior for navbar links */
-a.navbar__link:hover {
-  opacity: 1;
-}
-
 .navbar__link.active {
   color: var(--text-primary-default);
 }
 
 .navbar__username {
+  display: none;
   color: var(--text-primary-muted);
+}
+@media (min-width: 460px) {
+  .navbar__username {
+    display: block;
+  }
 }
 
 .navbar__signin {
@@ -54,7 +50,7 @@ a.navbar__link:hover {
 
 .navbar__signout {
   color: var(--text-primary-muted);
-  margin-left: var(--spacing-1);
+  margin-left: var(--sp-1);
   cursor: pointer;
 }
 

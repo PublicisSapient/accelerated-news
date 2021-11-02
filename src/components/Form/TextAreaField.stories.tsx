@@ -37,7 +37,7 @@ function TestForm({ onSubmit }: TestFormProps) {
         />
       </div>
 
-      <button className="btn-lg w-full" type="submit">
+      <button className="btn-primary btn-lg w-full" type="submit">
         Submit
       </button>
     </form>
